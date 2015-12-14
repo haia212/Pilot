@@ -1,0 +1,41 @@
+<ol class="breadcrumb hidden-print">
+    {% for breadcrumb in breadcrumbs.all %}
+    {% if forloop.last %}
+    <li class="active breadcrumb__item breadcrumb__item--active " itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+        <a class="breadcrumb__item__link" href="#" itemprop="url" data-lf-tracking='{"bind":"click","category":"breadcrumb","label":"{{breadcrumb.text | replace: "'",""}}"}'>
+            <span itemprop="title">
+                {{breadcrumb.text}}
+            </span>
+        </a>
+    </li>
+    {% elsif forloop.first %}
+    <li class="breadcrumb__item" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+        {% if frontoffice.corporate_website and frontoffice.corporate_website.size != 0 %}
+        <a class="breadcrumb__item__link" href="//{{frontoffice.corporate_website}}" itemprop="url" data-lf-tracking='{"bind":"click","category":"breadcrumb","label":"{{breadcrumb.text | replace: "'",""}}"}'>
+            <span itemprop="title" class="hide">
+                {{breadcrumb.text}}
+            </span>
+            <em class="icon-home"></em>
+        </a>
+        {% else %}
+        <a class="breadcrumb__item__link" href="{{breadcrumb.url}}" itemprop="url" data-lf-tracking='{"bind":"click","category":"breadcrumb","label":"{{breadcrumb.text | replace: "'",""}}"}'>
+            <span itemprop="title">
+                {{breadcrumb.text}}
+            </span>
+        </a>
+        {% endif %}
+    </li>
+    {% else %}
+    <li class="breadcrumb__item" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+        <a class="breadcrumb__item__link" href="{{breadcrumb.url}}" itemprop="url" data-lf-tracking='{"bind":"click","category":"breadcrumb","label":"{{breadcrumb.text | replace: "'",""}}"}'>
+            <span class="breadcrumb__item__link__text" itemprop="title">
+                {{breadcrumb.text}}
+            </span>
+            <span class="breadcrumb__item__link__placeholder">
+                ...
+            </span>
+        </a>
+    </li>
+    {% endif %}
+    {% endfor %}
+</ol>

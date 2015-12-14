@@ -1,0 +1,148 @@
+//------------------------------------------------------------------
+// Variables
+//-------------------------------------------------------------------
+
+//Basic Colors
+$white:             #fff;       //White
+$black:             #000;       //Black
+$mine-shaft:        #333;       //Dark grey
+$dusty-gray:        #999;       //Grey
+$gallery:           #ededed;    //Light grey
+$monza:             #c80926;    //Red
+$la-palma:          #10a21a;    //Green
+$killarney:         #3c763d;    //Darker green
+$pepperpmint:       #dff0d8;    //Light green
+$apple-blossom:     #a94442;    //Dark red
+$ochre:             #c88423;
+
+//Specific Colors
+$error-color:                       $apple-blossom;
+
+$button-info-color:                 $gallery;
+$button-default-color:              $mine-shaft;
+
+$open-state-color:                  $la-palma;
+$close-state-color:                 $monza;
+$closing-state-color:               $ochre;
+
+$breadcrumb-color:                  $mine-shaft;
+
+$cookielaw-bg-color:                $dusty-gray;
+$cookielaw-color:                   $white;
+
+$strike-bg-color:                   $white;
+$strike-after-bg-color:             $dusty-gray;
+
+$loading-bg-color:                  $dusty-gray;
+
+$events-bg-color:                   $white;
+
+$typeahead-bg-color:                $white;
+
+$newsearch-bg-color:                $white;
+
+$tabbar-boxshadow-color:            $dusty-gray;
+$tabbar-bg-color:                   $gallery;
+$tabbar-text-color:                 $mine-shaft;
+$tabbar-link-active-bg-color:       $mine-shaft;
+$tabbar-link-active-text-color:     $white;
+
+$scrolling-bg-color:                $gallery;
+
+$hours-time-bg-color:               $gallery;
+$hours-day-bg-color:                $dusty-gray;
+$hours-day-border-color:            $white;
+$hours-day-text-color:              $white;
+$hours-day-today-bg-color:          $mine-shaft;
+
+$marker-text-color:                 $mine-shaft;
+
+$itinerary-step-border-color:       $gallery;
+
+$result-locate-text-color:          $dusty-gray;
+$result-locate-hover-bg-color:      $dusty-gray;
+$result-locate-hover-text-color:    $white;
+
+$result-item-border-color:          $dusty-gray;
+$result-item-bg-color:              $white;
+$result-item-hover-bg-color:        $gallery;
+
+$result-postype-bg-color:           $mine-shaft;
+$result-postype-text-color:         $white;
+
+//Bootstrap Overwrite
+$font-family-sans-serif: 'Roboto', sans-serif;
+$font-size-base: 15px;
+
+$text-color: $mine-shaft;
+
+$border-radius-base: 0;
+$border-radius-large: $border-radius-base;
+
+$link-color: $text-color;
+$link-hover-color: darken($link-color, 15%);
+$link-hover-decoration: underline;
+
+$grid-gutter-width: 30px;
+
+$padding-base-vertical: 9px;
+$padding-base-horizontal: 12px;
+
+$btn-default-color:     $mine-shaft;
+$btn-default-bg:        $white;
+$btn-default-border:    $button-default-color;
+
+$btn-info-color:    $mine-shaft;
+$btn-info-bg:       $button-info-color;
+$btn-info-border:   $button-info-color;
+
+$input-border: $button-default-color;
+
+$pagination-color:              $mine-shaft;
+$pagination-bg:                 $white;
+$pagination-border:             $mine-shaft;
+
+$pagination-hover-color:        $white;
+$pagination-hover-bg:           $mine-shaft;
+$pagination-hover-border:       $mine-shaft;
+
+$pagination-active-color:       $white;
+$pagination-active-bg:          $mine-shaft;
+$pagination-active-border:      $mine-shaft;
+
+$pagination-disabled-color:     $dusty-gray;
+$pagination-disabled-bg:        $white;
+$pagination-disabled-border:    $mine-shaft;
+
+$state-success-bg:      transparent;
+$state-success-text:    $button-default-color;
+$state-success-border:  transparent;
+
+$alert-success-bg:      $pepperpmint;
+$alert-success-text:    $killarney;
+$alert-success-border:  darken(adjust-hue($alert-success-bg, -10), 5%);
+
+$screen-sm-min: 768px;  //Smartphone screen breakpoint
+$screen-md-min: 992px;  //Tablet screen breakpoint
+$screen-lg-min: 1200px; //Desktop screen breakpoint
+
+$modal-lg: 992px;
+$modal-md: 768px;
+$modal-sm: 300px;
+
+$grid-float-breakpoint: $screen-md-min;
+
+//Other variables
+$major-locations-number-xs: 2;
+$major-locations-number-sm: 3;
+$major-locations-number-md: 4;
+
+$result-pagination-margin: 10px;
+$result-height-content: 550px;
+
+$transition-default: 400ms all;
+
+$marker-width: 33px;
+$marker-height: 50px;
+$marker-padding-top: 7px;
+$marker-font-size: 14px;

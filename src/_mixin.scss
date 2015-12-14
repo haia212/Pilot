@@ -1,0 +1,12 @@
+//------------------------------------------------------------------
+// Mixin
+//------------------------------------------------------------------
+@mixin marker-display($text-indent: 0) {
+    display: block;
+    padding-top: $marker-padding-top;
+    text-indent: $text-indent;
+    width: $marker-width !important;
+    height: $marker-height;
+    font-family: $font-family-sans-serif;
+}
+

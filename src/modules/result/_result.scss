@@ -1,0 +1,283 @@
+//------------------------------------------------------------------
+// Results
+//------------------------------------------------------------------
+
+.result {
+    .searchform {
+        display: none;
+        margin: 10px 0;
+
+        @media (min-width: $screen-sm-min) {
+            display: block;
+            margin: 20px 0;
+        }
+    }
+
+    &__top {
+        margin: 0 0 10px;
+
+        @media (min-width: $screen-sm-min) {
+            margin: 0 0 15px;
+        }
+
+        @media (min-width: $screen-sm-min) {
+            margin: 0 0 20px;
+        }
+
+        &__title {
+            margin-bottom: 0;
+        }
+
+        &__subtitle {
+            text-align: center;
+
+            @media (min-width: $screen-md-min) {
+                font-size: 16px;
+            }
+        }
+    }
+
+    &__map {
+        margin-bottom: 20px;
+        height: $result-height-content;
+    }
+
+    &__content {
+        overflow-y: auto;
+
+        @media (min-width: $screen-sm-min) {
+            max-height: $result-height-content;
+
+            &.paginate {
+                max-height: ($result-height-content - $input-height-base - $result-pagination-margin);
+            }
+        }
+
+        &__city:first-child {
+            margin: 0;
+        }
+
+        &__postype {
+            margin: 0;
+            background-color: $result-postype-bg-color;
+            padding: 10px;
+            text-align: left;
+            text-transform: uppercase;
+            color: $result-postype-text-color;
+            font-size: 20px;
+        }
+
+        &__pos {
+            position: relative;
+            transition: $transition-default;
+            border-bottom: 1px solid $result-item-border-color;
+            background-color: $result-item-bg-color;
+            padding: 10px;
+            overflow: hidden;
+
+            &.has-page:hover {
+                background-color: $result-item-hover-bg-color;
+                cursor: pointer;
+
+                .result__content__pos__name {
+                    text-decoration: underline;
+                }
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &__locate {
+                transition: $transition-default;
+
+                em {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transition: $transition-default;
+                    margin-top: -10px;
+                    margin-left: -13px;
+                    color: $result-locate-text-color;
+                    font-size: 20px;
+                }
+
+                &:hover {
+                    background-color: $result-locate-hover-bg-color;
+
+                    em {
+                        color: $result-locate-hover-text-color;
+                    }
+                }
+            }
+
+            &__column {
+
+                &__left {
+                    display: block;
+                    position: absolute;
+                    width: 45px;
+                    vertical-align: top;
+                }
+
+                &__middle {
+                    display: block;
+                    padding-left: 55px;
+
+                    @media (min-width: $screen-sm-min) {
+                        padding-right: 36px;
+                    }
+                }
+
+                &__right {
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    width: 46px;
+                }
+            }
+
+            &__name {
+                margin: 0;
+                font-size: $font-size-base + 3;
+                font-weight: bold;
+            }
+
+            &__address {
+                margin: 5px 0 0;
+            }
+
+            &__picto {
+                &__img {
+                    width: 30px;
+
+                    &:first-child {
+                        margin-right: 10px;
+                    }
+                }
+            }
+
+            &__marker {
+                background-image: url('../images/marker/marker.png');
+                background-repeat: no-repeat;
+                background-position: center center;
+                min-width: $marker-width;
+                height: $marker-height;
+
+                &__number {
+                    padding-top: $marker-padding-top;
+                    min-width: $marker-width;
+                    text-align: center;
+                    color: $marker-text-color;
+                    font-size: $marker-font-size;
+                }
+            }
+
+            &__distance {
+                text-align: center;
+                font-weight: bold;
+            }
+
+            &__showphone,
+            &__phone {
+                margin: 5px 0;
+            }
+
+            &__phone {
+                font-size: $font-size-base + 1;
+            }
+
+            &__hours {
+                &__label {
+                    display: inline-block;
+                    vertical-align: top;
+                    font-weight: bold;
+                }
+
+                &--open {
+                    display: inline-block;
+                    color: $open-state-color;
+
+                    span {
+                        display: block;
+                    }
+                }
+
+                &--close {
+                    color: $close-state-color;
+                }
+            }
+        }
+    }
+
+    &__pagination {
+        margin-bottom: 20px;
+        height: ($input-height-base + $result-pagination-margin);
+
+        &__list {
+            margin: $result-pagination-margin 0 0;
+        }
+    }
+
+    &__events {
+        background-color: transparent;
+
+        .title {
+            margin-top: 0;
+        }
+    }
+
+    .eventsactu,
+    .eventsimg,
+    .eventsslider {
+        margin-top: ($grid-gutter-width / 2);
+        margin-bottom: ($grid-gutter-width / 2);
+
+        @media (min-width: $screen-md-min) {
+            margin-top: $grid-gutter-width;
+            margin-bottom: $grid-gutter-width;
+        }
+    }
+
+    .lf_marker {
+        text-align: center;
+        font-size: $marker-font-size;
+
+        .active_number {
+            @include marker-display;
+            background-image: url('../images/marker/marker.png');
+        }
+
+        .active_cluster {
+            @include marker-display(-9999px);
+            background-image: url('../images/marker/cluster.png');
+        }
+
+        //For Bing
+        &.active_number {
+            @include marker-display;
+            background-image: url('../images/marker/marker.png');
+        }
+
+        &.cluster {
+            @include marker-display(-9999px);
+            background-image: url('../images/marker/cluster.png');
+        }
+
+        > div {
+            top: 10px !important;
+            color: $marker-text-color !important;
+        }
+
+        img {
+            display: none;
+        }
+    }
+
+    //Fix arrow popup Bing Map
+    .infobox-stalk {
+        margin-top: -2px;
+    }
+}

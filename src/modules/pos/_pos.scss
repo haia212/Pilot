@@ -1,0 +1,609 @@
+//------------------------------------------------------------------
+// PointOfSale
+//------------------------------------------------------------------
+.pos {
+    &__print {
+        &__logo {
+            display: none;
+        }
+    }
+
+    .searchform {
+        display: none;
+        margin: 10px 0;
+
+        @media (min-width: $screen-sm-min) {
+            display: block;
+            margin: 20px 0;
+        }
+    }
+
+    &__carousel {
+        .left {
+            background-image: none;
+        }
+
+        .right {
+            background-image: none;
+        }
+    }
+
+    &__infos {
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        &__name {
+            margin: 0;
+            text-align: left;
+        }
+
+        &__address,
+        &__phone,
+        &__fax {
+            font-size: $font-size-base + 2;
+        }
+
+        &__showphone,
+        &__phone {
+            margin: 5px 0;
+        }
+
+        &__address {
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
+
+        &__cta {
+            margin-top: 10px;
+
+            &:first-child {
+
+                @media (min-width: $screen-sm-min) {
+                    margin-top: 0;
+                }
+            }
+
+            &__newsletter,
+            &__addressrequest,
+            &__print {
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    &__tabs {
+        &:not(.affix) {
+            .container {
+                padding: 0;
+                width: inherit;
+            }
+        }
+
+        &.affix {
+            top: 0;
+            left: 0;
+            z-index: 10;
+            box-shadow: 1px 1px 10px $tabbar-boxshadow-color;
+            background-color: $tabbar-bg-color;
+            width: 100%;
+
+            .navbar-toggle {
+                margin-right: 0;
+            }
+
+            .container {
+                padding-right: ($grid-gutter-width / 2);
+                padding-left: ($grid-gutter-width / 2);
+            }
+        }
+
+        .navbar {
+            margin: 0;
+            border: 0;
+            background-color: $tabbar-bg-color;
+            min-height: 39px;
+
+            &-toggle {
+                margin-top: 5px;
+                margin-bottom: 5px;
+                padding: 8px;
+            }
+
+            &-collapse {
+                padding: 0;
+            }
+
+            &-nav {
+                margin: 0;
+                width: 100%;
+
+                > .active {
+                    > a {
+                        background-color: $tabbar-link-active-bg-color !important;
+                        color: $tabbar-link-active-text-color !important;
+
+                        &:focus {
+                            background-color: $tabbar-bg-color;
+                            color: $tabbar-text-color;
+                        }
+
+                        &:hover {
+                            background-color: $tabbar-link-active-bg-color;
+                            color: $tabbar-link-active-text-color;
+                        }
+                    }
+                }
+
+                > li {
+                    > a {
+                        color: $tabbar-text-color;
+                        //transition: all .2s ease-in;
+                        @media (min-width: $screen-sm-min) {
+                            padding-top: 10px;
+                            padding-bottom: 10px;
+                        }
+
+                        &:focus {
+                            background-color: $tabbar-bg-color;
+                            color: $tabbar-text-color;
+                        }
+
+                        &:hover {
+                            background-color: $tabbar-link-active-bg-color;
+                            color: $tabbar-link-active-text-color;
+                        }
+                    }
+                }
+            }
+        }
+
+        &__item {
+            @media (max-width: $screen-md-min - 1) {
+                width: 100% !important;
+            }
+
+            &__title {
+                margin: 0;
+                text-align: center;
+                font-size: 16px;
+                font-weight: 400;
+
+                @media (min-width: $screen-sm-min) {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+
+    &__scrolling {
+        &__section:nth-child(even) {
+            background-color: $scrolling-bg-color;
+        }
+    }
+
+    //Sections
+    &__presentation {
+        &__description {
+            text-align: justify;
+        }
+    }
+
+    &__access {
+        &__map {
+            position: relative;
+
+            &__canvas {
+                height: 400px;
+            }
+
+            &__button {
+                margin-top: 10px;
+                width: 100%;
+                text-transform: uppercase;
+
+                @media (min-width: $screen-sm-min) {
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    margin: 0;
+                    width: auto;
+                }
+            }
+        }
+
+        &__majorcities {
+            margin: 10px 0;
+
+            &__title,
+            &__city {
+                margin: 0;
+                font-size: $font-size-base;
+            }
+
+            &__title,
+            &__city,
+            ul,
+            li {
+                @media (min-width: $screen-sm-min) {
+                    display: inline-block;
+                }
+            }
+
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style-type: none;
+
+                > li {
+                    + li:before {
+                        @media (min-width: $screen-sm-min) {
+                            padding: 0 5px;
+                            content: '-';
+                        }
+                    }
+                }
+            }
+        }
+
+        &__infos {
+            &__title {
+                margin: 0;
+                font-size: 18px;
+
+                @media (min-width: $screen-sm-min) {
+                    font-size: 20px;
+                }
+
+                @media (min-width: $screen-sm-min) {
+                    font-size: 22px;
+                }
+            }
+
+            &__text {
+                text-align: justify;
+            }
+        }
+    }
+
+    &__addressrequest {
+        &__country {
+            margin-bottom: 10px !important;
+        }
+    }
+
+    &__contactform {
+        form {
+            position: relative;
+        }
+
+        &__row {
+            .form-group:nth-child(2n+1) {
+                clear: both;
+            }
+
+            @media (min-width: $screen-md-min) {
+                .form-group:nth-child(2n+1) {
+                    clear: none;
+                }
+
+                .form-group:nth-child(3n+1) {
+                    clear: both;
+                }
+            }
+        }
+
+        &__submit {
+            text-transform: uppercase;
+        }
+    }
+
+    &__products,
+    &__services,
+    &__categories {
+        &__column {
+            margin-bottom: 10px;
+
+            @media (min-width: $screen-sm-min) {
+                margin-bottom: 15px;
+            }
+
+            @media (min-width: $screen-md-min) {
+                margin-bottom: 20px;
+            }
+
+            &:nth-child(2n+1) {
+                clear: both;
+            }
+
+            @media (min-width: $screen-md-min) {
+                &:nth-child(2n+1) {
+                    clear: none;
+                }
+
+                &:nth-child(3n+1) {
+                    clear: both;
+                }
+            }
+        }
+
+        &__item {
+            &__img {
+                display: inline-block;
+                padding-right: 0; //Change value if img and text are side by side
+                max-width: 100%;
+                vertical-align: top;
+            }
+
+            &__body {
+                display: inline-block;
+
+                &__title {
+                    margin: 10px 0 5px; //Change value if img and text are side by side
+                }
+
+                &__text {
+                    text-align: justify;
+                }
+            }
+        }
+    }
+
+    &__categories {
+        &__column {
+            margin-bottom: 15px;
+
+            &:nth-child(2n+1) {
+                clear: both;
+            }
+
+            @media (min-width: $screen-md-min) {
+                &:nth-child(2n+1) {
+                    clear: none;
+                }
+
+                &:nth-child(3n+1) {
+                    clear: both;
+                }
+            }
+
+            &__title {
+                margin-bottom: 0;
+            }
+        }
+
+        &__title {
+            margin-top: 0;
+            line-height: 1;
+        }
+    }
+
+    &__hours {
+        margin-bottom: 20px;
+
+        &__exceptionnal {
+            &__item {
+                &__status {
+                    &--open {
+                        color: $open-state-color;
+
+                        em {
+                            margin-right: 5px;
+                        }
+                    }
+
+                    &--close {
+                        color: $close-state-color;
+
+                        em {
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &--mobile {
+            .pos__hours__time__empty {
+                display: none;
+            }
+        }
+
+        &--today {
+            font-weight: bold;
+
+            .pos__hours__day {
+                @media (min-width: $screen-sm-min) {
+                    background-color: $hours-day-today-bg-color;
+                }
+            }
+        }
+
+        &__column {
+            margin-bottom: 5px;
+            border-left: 1px solid $hours-day-border-color;
+
+            &:last-child {
+                margin-bottom: 0;
+                border-left: 0;
+            }
+        }
+
+        &__show {
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        &__day {
+            float: left;
+            text-align: left;
+            text-transform: capitalize;
+            color: $text-color;
+
+            @media (min-width: $screen-sm-min) {
+                float: none;
+                background-color: $hours-day-bg-color;
+                padding: 5px;
+                text-align: center;
+                color: $hours-day-text-color;
+            }
+        }
+
+        &__time {
+            float: right;
+
+            @media (min-width: $screen-sm-min) {
+                float: none;
+                background-color: $hours-time-bg-color;
+                padding: 5px;
+                text-align: center;
+            }
+        }
+
+        &__row {
+            display: none;
+
+            @media (min-width: $screen-sm-min) {
+                display: block;
+            }
+        }
+
+        &__timer {
+            font-weight: bold;
+
+            &--closing {
+                color: $closing-state-color;
+            }
+
+            &--close {
+                color: $close-state-color;
+            }
+
+            &--open {
+                color: $open-state-color;
+            }
+        }
+    }
+
+    &__itinerary {
+        left: 0 !important;
+
+        &__form {
+            &__submit {
+                text-transform: uppercase;
+            }
+        }
+
+        &__results {
+            display: none;
+            margin-top: 20px;
+
+            &__map {
+                margin-bottom: 15px;
+                height: 300px;
+            }
+
+            &__print {
+                margin-bottom: 15px;
+                text-transform: uppercase;
+            }
+
+            &__marker {
+                background-image: url('../images/marker/marker.png') !important;
+                background-repeat: no-repeat;
+                background-position: left;
+                width: $marker-width;
+                height: $marker-height;
+                -webkit-print-color-adjust: exact;
+
+                &__number {
+                    padding-top: $marker-padding-top;
+                    min-width: $marker-width;
+                    text-align: center;
+                    color: $marker-text-color;
+                    font-size: $marker-font-size;
+                }
+            }
+
+            &__origin,
+            &__destination {
+                padding-left: 15px;
+                font-weight: bold;
+
+                address {
+                    margin: 0;
+                }
+            }
+
+            &__steps {
+                padding: 0;
+                list-style-type: none;
+
+                li {
+                    border-bottom: 2px solid $itinerary-step-border-color;
+                    padding: 10px 0;
+
+                    &:last-child {
+                        border-bottom: 0;
+                    }
+
+                    .lf_ddstepdescription {
+                        display: inline-block;
+                        width: 80%;
+                        word-wrap: break-word;
+                    }
+
+                    .lf_ddstepdistance {
+                        display: inline-block;
+                        width: 20%;
+                        vertical-align: middle;
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    }
+
+    form [class*='col-'] {
+        position: inherit;
+    }
+
+    .modal-title {
+        text-transform: uppercase;
+        font-size: 16px;
+    }
+
+    .lf_marker {
+        text-align: center;
+        font-size: $marker-font-size;
+
+        .active_current {
+            @include marker-display;
+            background-image: url('../images/marker/marker-pos.png');
+            -webkit-print-color-adjust: exact;
+        }
+
+        &.active_current {
+            @include marker-display;
+            background-image: url('../images/marker/marker-pos.png');
+        }
+
+        .active_number {
+            @include marker-display;
+            background-image: url('../images/marker/marker.png');
+            -webkit-print-color-adjust: exact;
+        }
+
+        &.active_number {
+            @include marker-display;
+            background-image: url('../images/marker/marker.png');
+        }
+
+        > div {
+            color: $text-color !important;
+        }
+
+        img {
+            display: none;
+        }
+    }
+}

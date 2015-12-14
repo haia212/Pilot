@@ -1,0 +1,49 @@
+//------------------------------------------------------------------
+// Cities Seo
+//------------------------------------------------------------------
+
+.citiesseo {
+    &__column {
+
+        @media (min-width: $screen-xs-min) and (max-width: $screen-sm-min - 1) {
+            width: percentage(100 / $major-locations-number-xs) / 100;
+
+            &:nth-child(#{$major-locations-number-xs}n+1) {
+                clear: both;
+            }
+        }
+
+        @media (min-width: $screen-sm-min) {
+            width: percentage(100 / $major-locations-number-sm) / 100;
+
+            &:nth-child(#{$major-locations-number-xs}n+1) {
+                clear: none;
+            }
+
+            &:nth-child(#{$major-locations-number-sm}n+1) {
+                clear: both;
+            }
+        }
+
+        @media (min-width: $screen-md-min) {
+            width: percentage(100 / $major-locations-number-md) / 100;
+
+            &:nth-child(#{$major-locations-number-sm}n+1) {
+                clear: none;
+            }
+
+            &:nth-child(#{$major-locations-number-md}n+1) {
+                clear: both;
+            }
+        }
+
+        &__name {
+            margin: 0;
+        }
+
+        &__cities {
+            padding: 0;
+            list-style-type: none;
+        }
+    }
+}

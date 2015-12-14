@@ -1,0 +1,79 @@
+{% for group in opening_hours.groups %}
+    {% assign closing_time = 'true' %}
+{% endfor %}
+<div class="pos__hours" data-lf-pos-hours>
+    {% for group in opening_hours.groups %}
+    {% if group.has_distant_exceptional_hours %}
+    <div class="pos__hours__exceptionnal" data-lf-pos-hours-exceptionnal>
+        <h2 class="pos__hours__exceptionnal__title title">{{opening_hours.title_exceptional}}</h2>
+        {% for eoh in group.distant_exceptional_hours %}
+        <span class="pos__hours__exceptionnal__item">
+            {% if eoh.closed? %}
+            <span class="pos__hours__exceptionnal__item__status--close"><em class="icon-info"></em>({{eoh.closed}})</span>
+            <span data-other-hours data-status="closed" data-day-start="{{eoh.starts_at}}" data-day-end="{{eoh.ends_at}}"></span>
+            {% else %}
+            <span class="pos__hours__exceptionnal__item__status--open"><em class="icon-info"></em>({{'frontoffice.pos.opening_hours.open' | translate}})</span>
+            <span data-other-hours data-status="open" data-day-start="{{eoh.starts_at}}" data-day-end="{{eoh.ends_at}}" data-time-start-am="{{eoh.time_starts_at1 | date: '%R'}}" data-time-start-pm="{{eoh.time_starts_at2 | date: '%R'}}" data-time-end-am="{{eoh.time_ends_at1 | date: '%R'}}" data-time-end-pm="{{eoh.time_ends_at2 | date: '%R'}}"></span>
+            {% endif %}
+            <span class="pos__hours__exceptionnal__item__date"> {{eoh.date_string}} {{eoh.time_string}}</span>
+            {% if eoh.description and eoh.description.size != 0 %}
+            <span class="pos__hours__exceptionnal__item__description"> &bull; {{eoh.description}}</span>
+            {% endif %}
+        </span>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% for group in opening_hours.groups %}
+    <h2 class="pos__hours__title title">{{opening_hours.title}} {{group.name}}</h2>
+    {% assign pos_hours_id = forloop.index0 %}
+    {% for day in group.days %}
+    {% if day.is_today %}
+    <div class="pos__hours__column visible-xs-block pos__hours--mobile" data-lf-pos-hours-mobile="{{pos_hours_id}}">
+        <div class="clearfix"></div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    <div class="btn btn-default pos__hours__show visible-xs-block hidden-print" data-lf-pos-hours-show="{{pos_hours_id}}">{{'frontoffice.mobile.pos.opening_hours.seeall' | translate: "group",group.name}}</div>
+    <div class="row row-no-padding pos__hours__row" data-lf-pos-hours-row="{{pos_hours_id}}">
+        {% assign strhours = "" %}
+        {% assign strhoursend = "no" %}
+        {% for day in group.days %}
+        {% if forloop.last == true %}{% assign strhoursend = "yes" %}{%endif%}
+        <div class="col-md-custom col-sm-3 col-xs-12 pos__hours__column" data-lf-pos-hours-column>
+            <div class="pos__hours__day">{{day.name}}</div>
+            <div class="pos__hours__time">
+                {% if day.is_normally_open %}
+                    {% for hours in day.regular_hours %}
+                    {% assign arrofw = "Su,Mo,Tu,We,Th,Fr,Sa" | split: ',' %}
+                    {% assign dayofw = day.dom_id | | remove: "day_" | plus: 0 %}
+                    {% capture strhour %},{{arrofw[dayofw]}} {{hours.start | date: "%H:%M"}}-{{hours.end | date: "%H:%M"}}{% endcapture%}
+                    {% assign strhours = strhours | append: strhour %}
+                    <!-- {{hours.time_string}} -->
+                    <span data-normal-hours data-status="open" data-time-open="{{hours.start | date: '%H:%M'}}" data-time-close="{{hours.end | date: '%H:%M'}}" data-index="{{forloop.index0}}"></span>
+                    <div class="pos__hours__time__value">
+                    {{hours.start | date: "%H:%M"}} - {{hours.end | date: "%H:%M"}}
+                    </div>
+                    {% if forloop.length < 2 %}
+                    <div class="tpos__hours__time__empty">&nbsp;</div>
+                    {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <span data-normal-hours data-status="closed"></span>
+                    <div class="pos__hours__time__value">{{wordings.closed}}</div>
+                    <div class="pos__hours__time__empty">&nbsp;</div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+        <meta itemprop="openingHours" content="{{strhours | replace_first: ',', ''}}">
+    </div>
+    <div class="pos__hours__timer hidden-print" data-timer-id="{{pos_hours_id}}">
+        <div class="pos__hours__timer--closing" data-lf-pos-hours-timer-closing>{{'frontoffice.opening_hours.timer.closing' | translate: "group",group.name}}
+            <span class="pos__hours__timer__count" data-lf-pos-hours-timer-count> {{'frontoffice.opening_hours.timer.title' | translate}}</span>
+        </div>
+        <div class="pos__hours__timer--open" data-lf-pos-hours-timer-open>{{'frontoffice.opening_hours.timer.open' | translate: "group",group.name}}</div>
+        <div class="pos__hours__timer--close" data-lf-pos-hours-timer-close>{{'frontoffice.opening_hours.timer.closed' | translate: "group",group.name}}</div>
+    </div>
+    {% endfor %}
+</div>

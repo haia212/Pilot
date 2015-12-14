@@ -1,0 +1,155 @@
+//------------------------------------------------------------------
+// Boostrap Overwrite
+//------------------------------------------------------------------
+.checkbox input[type="checkbox"]:checked + label::after {
+    @include icon('validate');
+
+    padding-top: 3px;
+    padding-left: 3px;
+}
+
+.check-mark:before {
+    @include icon('validate');
+}
+
+.carousel-indicators {
+    bottom: 0;
+    margin-bottom: 0;
+}
+
+.btn {
+    transition: $transition-default;
+}
+
+.carousel-control > span {
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+    font-size: 30px;
+
+    &.icon-chevron-left {
+        left: 50%;
+        margin-left: -15px;
+    }
+
+    &.icon-chevron-right {
+        right: 50%;
+        margin-right: -15px;
+    }
+}
+
+.backdrop {
+    display: none !important;
+}
+
+.backdrop_indicator {
+    display: none !important;
+}
+
+.row {
+    &-no-padding {
+        margin-right: 0;
+        margin-left: 0;
+
+        >[class*='col-'] {
+            padding-right: 0;
+            padding-left: 0;
+        }
+    }
+}
+
+.dropdown {
+    &-menu {
+
+        @media (min-width: $screen-sm-min) {
+            width: auto;
+        }
+
+        .checkbox {
+            margin: 0;
+        }
+
+        label {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.blockUI {
+    &.blockOverlay {
+        opacity: .5;
+        z-index: 10000 !important;
+        background-color: $black;
+    }
+
+    &.blockMsg {
+        z-index: 10001 !important;
+    }
+}
+
+.dropdown-toggle.btn-info {
+    +.dropdown-menu {
+        padding: 0;
+
+        li {
+            background-color: $button-info-color;
+
+            a {
+                padding: $padding-base-vertical $padding-base-horizontal;
+            }
+        }
+    }
+}
+
+.help-block {
+    margin-bottom: 0;
+}
+
+.leaflet-control-attribution {
+    display: none;
+}
+
+.modal-dialog {
+    .btn-default {
+        text-transform: uppercase;
+    }
+}
+
+.typeahead {
+    &-container {
+        position: relative;
+        z-index: 2;
+        background-color: $typeahead-bg-color;
+    }
+
+    &-result {
+        >.dropdown-menu {
+            display: block;
+            padding: 0;
+            width: 100%;
+
+            li {
+                background-color: $typeahead-bg-color;
+
+                a {
+                    padding: $padding-base-vertical $padding-base-horizontal;
+                    color: $text-color;
+                }
+
+                &.active {
+                    background-color: $button-info-color;
+
+                    a {
+                        background-color: $button-info-color;
+                        color: $text-color;
+
+                        &:hover {
+                            background-color: $button-info-color;
+                            color: $text-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

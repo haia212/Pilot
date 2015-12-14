@@ -1,0 +1,63 @@
+{% assign category_name = events[eventsactu] %}
+{% if events.all_by_category %}
+
+<!-- Detailled event -->
+<div class="{{eventsactu}} eventsactu hidden-print">
+    <h{{2 | plus:add_hlevel}} class="eventsactu__title title">{{events.category_label}}</h{{2 | plus:add_hlevel}}>
+    {% for event in events.all_by_category %}
+    <div class="eventsactu__content" {% if footerlocal_page == "point_of_sale" %}itemscope itemtype="http://schema.org/Event" {% endif %} data-lf-tracking='{"bind":"display","category":"eventsactu","label":"{{event.name | replace: "'",""}}##{{event.id}}"}'>
+        <div class="{{event.class_name}} row">
+            <div class="col-md-4 col-sm-5 col-xs-12 vcenter eventsactu__content__media">
+                {% if event.media? %}
+                    {% capture event_img %}<img {% if footerlocal_page == "point_of_sale" %}itemprop="image"{% endif %} src="{{frontoffice.view_short_template_path}}/images/empty.png" class="eventsactu__content__media__img img-before-loading" data-src="{{event.media}}" alt="{{event.label}}"/>{% endcapture %}
+                    {% if event.pdf? %}
+                        <a href="{{event.pdf}}" class="eventsactu__content__media__pdf" target="_blank" aria-hidden="true" data-lf-tracking='{"bind":"click","category":"eventsactu-imgpdf","label":"{{event.name | replace: "'", ""}}##{{event.id}}"}'>
+                            {{event_img}}
+                        </a>
+                    {% elsif event.url? %}
+                        <a href="{{event.url}}" class="eventsactu__content__media__link" {% if event.open_link_in_a_new_window == 'true' %}target="_blank"{% endif %} aria-hidden="true" data-lf-tracking='{"bind":"click","category":"eventsactu-imglink","label":"{{event.name | replace: "'", ""}}##{{event.id}}"}'>
+                            {{event_img}}
+                        </a>
+                    {% else %}
+                        {{event_img}}
+                    {% endif %}
+                {% endif %}
+            </div><div class="col-md-8 col-sm-7 col-xs-12 vcenter eventsactu__content__body">
+                <h{{3 | plus:add_hlevel}} class="eventsactu__content__body__title media-heading">{{event.name}}</h{{3 | plus:add_hlevel}}>
+                <div class="eventsactu__content__body__date small">{{event.display_from_thru_date}}</div>
+                <p class="eventsactu__content__body__description">{{event.text}}</p>
+                {% if event.url? and event.url_text and event.url_text.size != 0 %}
+                <a {% if footerlocal_page == "point_of_sale" %}itemprop="url"{% endif %} href="{{event.url}}" class="eventsactu__content__body__link" {% if event.open_link_in_a_new_window == 'true' %}target="_blank"{% endif %} data-lf-tracking='{"bind":"click","category":"eventsactu-link","label":"{{event.name | replace: "'", ""}}##{{event.id}}"}'>
+                    <em class="icon-plus-square"></em> {{event.url_text}}
+                </a>
+                {% endif %}
+                {% if event.pdf? and event.pdf_display_name != "" %}
+                <a {% if footerlocal_page == "point_of_sale" %}itemprop="url"{% endif %} href="{{event.pdf}}" class="eventsactu__content__body__pdf" target="_blank" data-lf-tracking='{"bind":"click","category":"eventsactu-pdf","label":"{{event.name | replace: "'",""}}##{{event.id}}"}'>
+                    <em class="icon-file-pdf"></em> {{event.pdf_display_name}}
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% if footerlocal_page == "point_of_sale" %}
+        {% assign wn = pos.world_nodes | last %}
+        <meta itemprop="name" content="{{event.name}}" />
+        <meta itemprop="startDate" content="{{event.starts_at}}" />
+        <div class="js-event-microdata-place" itemprop="location" itemscope itemtype="http://schema.org/Place">
+            <span itemprop="name">{{pos.name}}</span>
+            <div class="address" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                <span itemprop="streetAddress">{{pos.address}}</span><br>
+                <span itemprop="addressLocality">{{pos.city}}</span>,
+                <span itemprop="addressRegion">{{wn.name}}</span>
+                <span itemprop="postalCode">{{pos.postal_code}}</span>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+    {% endfor %}
+</div>
+
+{% endif %}
+{% unless footerlocal_page == 'index' or footerlocal_page == 'pos' %}
+    {% assign add_hlevel = add_hlevel | minus:1 %}
+{% endunless %}

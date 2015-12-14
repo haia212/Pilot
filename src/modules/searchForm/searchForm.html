@@ -1,0 +1,67 @@
+{% if frontoffice.multiple_country_search and advanced_search.size != 0 %}
+    {% assign querywidth = 'col-lg-3 col-md-3 col-sm-4' %}
+{% elsif advanced_search.size != 0 %}
+    {% assign querywidth = 'col-lg-5 col-md-5 col-sm-6' %}
+{% elsif frontoffice.multiple_country_search %}
+    {% assign querywidth = 'col-lg-5 col-md-5 col-sm-6' %}
+{% else %}
+    {% assign querywidth = 'col-lg-7 col-md-7 col-sm-8' %}
+{% endif %}
+
+<div class="searchform hidden-print" data-lf-searchform>
+    <form action="/search" method="GET" data-disable="false" data-lf-tracking='{"bind":"submit","category":"searchform"}'>
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-1 col-xs-12">
+                <button type="button" class="btn btn-default btn-block searchform__geoloc" data-lf-searchform-geoloc data-lf-tracking='{"bind":"click","category":"geolocation"}'>
+                    <em class="icon-target"></em> <span class="hidden-sm">{{'frontoffice.search.geolocation_search.button' | translate}}</span>
+                </button>
+            </div>
+            <div class="col-sm-1 col-xs-12">
+                <div class="searchform__or strike-behind">
+                    <span>{{'frontoffice.pos.address_request.labels.or' | translate}}</span>
+                </div>
+            </div>
+            {% if frontoffice.multiple_country_search %}
+            <div class="col-sm-2 col-xs-12">
+                <label for="country" class="sr-only">{{'frontoffice.search.select_country.first_option' | translate}}</label>
+                <select id="country" name="country" class="form-control searchform__country " data-width="100%" data-size="10" title="{{'frontoffice.search.select_country.first_option' | translate}}" required data-lf-searchform-country>
+                    <option value="" class="hidden">&nbsp;</option>
+                    {% assign sorted_countries = countries|unaccented_sort:'localized_name' %}
+                    {% for country in sorted_countries %}
+                    <option value="{{country.code}}">{{country.localized_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            {% endif %}
+            <div class="{{querywidth}} col-xs-12">
+                <div class="form-group">
+                    <div class="typeahead-container">
+                        <span class="typeahead-query">
+                            <label for="query" class="sr-only">{{'frontoffice.search.by_keyword.label' | translate}}</label>
+                            <input type="text" id="query" name="query" class="form-control searchform__query" placeholder="{{'frontoffice.search.by_keyword.example' | translate}}" value="{{query}}" required autocomplete="off" data-placement="top" data-content="<small>{{'frontoffice.search.by_keyword.error' | translate}}</small>" data-lf-searchform-query/>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            {% if advanced_search.size != 0 %}
+                {% for smart_tag in client.smart_tags %}
+                    {% if smart_tag.name == advanced_search %}
+                    <div class="col-sm-2 col-xs-12">
+                        <label for="filter_{{advanced_search}}" class="sr-only">{{'frontoffice.search.filters.defaultoption' | translate}}</label>
+                        <select id="filter_{{advanced_search}}" name="st_any[{{advanced_search}}][]" class="form-control searchform__filters" data-width="100%" data-size="10" multiple title="{{'frontoffice.search.filters.defaultoption' | translate}}" data-lf-searchform-filters data-lf-tracking='{"bind":"change","category":"filters"}'>
+                            {% for parameter in smart_tag.smart_tag_parameters %}
+                            {% if parameter.name != '.' %}
+                            <option value="{{parameter.name}}">{{parameter.label | strip_html}}</option>
+                            {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            <div class="col-sm-2 col-xs-12">
+                <button type="submit" class="btn btn-default btn-block searchform__submit" title="{{'frontoffice.search.by_keyword.button' | translate}}"><em class="icon-search" aria-hidden="true"></em> <span class="hidden-sm">{{'frontoffice.search.by_keyword.button' | translate}}</span></button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,97 @@
+//------------------------------------------------------------------
+// Breadcrumb
+//------------------------------------------------------------------
+
+.breadcrumb {
+    margin-bottom: 0;
+    background: none;
+    padding: 8px 0;
+    font-size: 96%;
+
+    &__item {
+        max-width: 210px;
+        overflow: hidden;
+        vertical-align: middle;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &:nth-child(n) {
+            display: none;
+        }
+
+        &:nth-child(2):not(.active) {
+            .breadcrumb__item__link__text {
+                display: none;
+            }
+
+            .breadcrumb__item__link__placeholder {
+                display: inline-block;
+            }
+        }
+
+        &:nth-child(-n+2) {
+            display: inline-block;
+        }
+
+        &:nth-last-child(-n+1) {
+            display: inline-block;
+        }
+
+        //Phone landscape layout
+        @media (min-width: $screen-xs-min) {
+            max-width: 180px;
+
+            &:nth-last-child(-n+2) {
+                display: inline-block;
+            }
+        }
+
+        //Tablet layout
+        @media (min-width: $screen-sm-min) {
+            max-width: 210px;
+
+            &:nth-last-child(-n+3) {
+                display: inline-block;
+            }
+        }
+
+        //Desktop layout
+        @media (min-width: $screen-md-min) {
+            max-width: 200px;
+
+            &:nth-child(2):not(.active) {
+                .breadcrumb__item__link__text {
+                    display: inherit;
+                }
+
+                .breadcrumb__item__link__placeholder {
+                    display: none;
+                }
+            }
+
+            &:nth-child(n) {
+                display: inline-block;
+            }
+        }
+
+        &--active {
+            font-weight: bold;
+        }
+
+        & + & {
+            &:before {
+                @include icon(breadcrumb);
+
+                color: $breadcrumb-color;
+            }
+        }
+
+        &__link {
+            color: $breadcrumb-color;
+
+            &__placeholder {
+                display: none;
+            }
+        }
+    }
+}

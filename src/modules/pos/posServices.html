@@ -1,0 +1,23 @@
+<div class="pos__services" id="lf_services">
+    <h2 class="pos__services__title title">{{'frontoffice.pos_tabs.services.title' | translate}}</h2>
+    <div class="row sorted-columns" data-lf-sortedcolumns>
+        {% for service in services %}
+        <div class="col-md-4 col-sm-6 col-xs-12 pos__services__column" data-st-ordered="{{service.css_class}}">
+            <div class="pos__services__item">
+                {% if service.media.url and service.media.url.size > 0 and service.media.url != '/shared/images/blank.gif' %}
+                <img src="{{frontoffice.view_short_template_path}}/images/empty.png" class="pos__services__item__img" data-src="{{service.media.url}}" alt="{{service.alt}}" />
+                {% endif %}
+
+                <div class="pos__services__item__body">
+                    <h3 class="pos__services__item__body__title">
+                        {{service.label}}
+                    </h3>
+                    <p class="pos__services__item__body__text">
+                        {{service.description}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

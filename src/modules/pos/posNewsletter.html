@@ -1,0 +1,24 @@
+<form id="new_newsletter_request_form" class="pos__newsletter" method="POST" action="/action/newsletter_request.json" data-lf-pos-newsletter data-lf-tracking='{"bind":"form","category":"newsletter","label":"{{pos.name | replace: "'", ""}}"}'>
+    <p>{{'frontoffice.pos.newsletter_request.introduction' | translate}}</p>
+
+    <input class="pos_id" id="newsletter_request_form_point_of_sale_id" name="newsletter_request_form[point_of_sale_id]" type="hidden" value="{{pos.id}}"/>
+
+    <div class="form-group">
+        <label for="newsletter_request_form_email" class="control-label">
+            {{'frontoffice.pos.address_request.labels.email' | translate}}
+        </label>
+        <input id="newsletter_request_form_email" name="newsletter_request_form[email]" class="form-control" type="text"
+            required
+            data-fv-notempty-message="{{'frontoffice.forms.error.mandatory' | translate}}"
+            data-fv-emailaddress="true"
+            data-fv-emailaddress-message="{{'frontoffice.forms.error.email' | translate}}"
+            data-lf-pos-newsletter-email />
+    </div>
+    <div class="alert success_request alert-success">
+        {{'frontoffice.pos.newsletter_request.success' | translate}}
+    </div>
+    <div class="inherit">
+        <input class="btn btn-default pull-right" type="submit" value="{{'frontoffice.pos.newsletter_request.submit_value' | translate}}" />
+        <div class="clearfix"></div>
+    </div>
+</form>

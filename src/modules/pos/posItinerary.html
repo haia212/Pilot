@@ -1,0 +1,84 @@
+<div id="lf_drivingdirections" class="pos__itinerary">
+    <div class="hidden-print">
+        <form id="pos__itinerary__form" method="POST" action="javascript:void(1)" data-lf-pos-itinerary>
+            <div id="lf_ddfrom_wrapper">
+                <div class="form-group">
+                    <label class="control-label" for="lf_ddfrom" >
+                        {{'frontoffice.pos.directions.from' | translate}}
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default pos__itinerary__geolocation" type="button" data-lf-pos-itinerary-geolocation data-lf-tracking='{"bind":"click","category":"geolocitinerary","label":"{{pos.name | replace: "'", ""}}"}'>
+                                <em class="icon-target"></em>
+                            </button>
+                        </span>
+                        <input type="text" id="lf_ddfrom" name="lf_ddfrom" class="form-control" placeholder="{{'frontoffice.pos.directions.from_helper' | translate}}" data-lf-pos-itinerary-start>
+                    </div>
+                    <small class="help-block pull-right">{{'frontoffice.pos.directions.example' | translate}} {{'frontoffice.pos.directions.example_address' | translate}}</small>
+                </div>
+            </div>
+
+            <div id="lf_ddto">
+                <div class="form-group">
+                    <label class="control-label">
+                        {{'frontoffice.pos.directions.to' | translate}}
+                    </label>
+                    <div>
+                    {{pos.name}}<br>
+                    {{pos.address1}}<br>
+                    {% if pos.address2 and pos.address2.size !=0  %}
+                    {{pos.address2}}<br>
+                    {% endif %}
+                    {% if zip_code =='zip' %}
+                    {{pos.city}}, {{state.name}} {{pos.postal_code}}
+                    {% else %}
+                    {{pos.postal_code}} {{pos.city}}
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div id="lf_ddcalculate">
+                <button type="submit" class="btn btn-default pull-right pos__itinerary__form__submit" data-lf-tracking='{"bind":"click","category":"calculitinerary","label":"{{pos.name | replace: "'", ""}}"}'>{{'frontoffice.pos.directions.go_button' | translate}}</button>
+                <div class="clearfix"></div>
+            </div>
+        </form>
+    </div>
+
+    <div id="lf_ddresults" class="pos__itinerary__results">
+        <div id="lf_ddmap" class="pos__itinerary__results__map"></div>
+        <button class="btn btn-default hidden-print pos__itinerary__results__print hidden-xs" id="lf_ddprint" data-lf-tracking='{"bind":"click","category":"printitinerary","label":"{{pos.name | replace: "'",""}}"}'><em class="icon-print"></em> {{'frontoffice.pos.print' | translate}}</button>
+
+        <div class="form-group">
+            <label class="control-label">
+                {{'frontoffice.pos.directions.path_length' | translate}}
+            </label>
+            <span id="lf_ddestimate" class="pos__itinerary__results__estimate">
+            </span>
+        </div>
+
+        <div class="pos__itinerary__results__marker vcenter">
+            <div class="pos__itinerary__results__marker__number">A</div>
+        </div>
+        <div id="lf_ddorigin" class="pos__itinerary__results__origin vcenter"></div>
+
+
+        <ul id="lf_ddroutesteps" class="pos__itinerary__results__steps">
+        </ul>
+
+        <div class="pos__itinerary__results__marker vcenter">
+            <div class="pos__itinerary__results__marker__number">B</div>
+        </div><!--
+        --><div id="lf_dddestination" class="pos__itinerary__results__destination vcenter">
+            {{pos.address1}}<br>
+            {% if pos.address2 and pos.address2.size !=0  %}
+            {{pos.address2}}<br>
+            {% endif %}
+            {% if zip_code =='zip' %}
+            {{pos.city}}, {{state.name}} {{pos.postal_code}}
+            {% else %}
+            {{pos.postal_code}} {{pos.city}}
+            {% endif %}
+        </div>
+    </div>
+</div>

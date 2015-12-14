@@ -1,0 +1,61 @@
+{% assign fullmap = 'true' %}
+{% if pos.access_not_blank or pos.parking_not_blank %}
+    {% assign fullmap = 'false' %}
+{% endif %}
+
+{% assign majorcities = 'false' %}
+{% for city in pos_drop.major_cities %}
+    {% assign majorcities = 'true' %}
+{% endfor %}
+<div class="pos__access">
+    <h2 class="pos__access__title title">{{'frontoffice.pos_tabs.access.title' | translate}}</h2>
+    <div itemprop="geo" itemscope="" itemtype="http://schema.org/GeoCoordinates">
+        <meta itemprop="latitude" content="{{pos.lat | strip_html | truncate: 9, ''}}">
+        <meta itemprop="longitude" content="{{pos.lng | strip_html | truncate: 9, ''}}">
+    </div>
+    <div class="row">
+        <div class="{% if fullmap == 'false' %}col-md-8{% endif %} col-xs-12">
+            <div class="pos__access__map">
+                <div id="lf_accessmap_canvas" class="pos__access__map__canvas" aria-hidden="true" data-lf-pos-map>
+                </div>
+                <button class="btn btn-default hidden-print pos__access__map__button hidden-xs" data-toggle="modal" data-target="#pos-itinerary" data-bind="driving_directions_show" data-lf-tracking='{"bind":"click","category":"showitinerary","label":"{{pos.name | replace: "'",""}}"}'>
+                    {{'frontoffice.pos.map.directions' | translate}}
+                </button>
+                <a href="http://maps.apple.com/maps?daddr={{pos.lat | strip_html | truncate: 9, ''}}%2C{{pos.lng | strip_html | truncate: 9, ''}}&hl=fr&ie=UTF8&z=13" target="_blank" class="btn btn-default hidden-print visible-xs-block pos__access__map__button" data-lf-tracking='{"bind":"click","category":"showitinerary","label":"{{pos.name | replace: "'",""}}"}'>
+                    {{'frontoffice.pos.map.directions' | translate}}
+                </a>
+                <a href="http://maps.apple.com/maps?hl=fr&ie=UTF8&q={{pos.lat | strip_html | truncate: 9, ''}}%2C{{pos.lng | strip_html | truncate: 9, ''}}&z=13" target="_blank" class="btn btn-default hidden-print visible-xs-block pos__access__map__button" data-lf-tracking='{"bind":"click","category":"opengooglemaps","label":"{{pos.name | replace: "'",""}}"}'>
+                    {{'frontoffice.pos.map.title' | translate}}
+                </a>
+            </div>
+
+            {% if majorcities == 'true' %}
+            <div class="pos__access__majorcities hidden-print lf_majorcities hidden-xs">
+                <h3 class="pos__access__majorcities__title">{{'frontoffice.pos.major_city.label' | translate}}</h3>
+                <ul>
+                    {% for city in pos_drop.major_cities %}
+                    <li>
+                        <h4 class="pos__access__majorcities__city" data-lf-tracking='{"bind":"display","category":"majorcities","label":"{{city.label | replace: "'", ""}}"}'>
+                            <a href="{{city.url}}" data-lf-tracking='{"bind":"click","category":"majorcities","label":"{{city.label | replace: "'", ""}}"}'>{{city.label}}</a>
+                        </h4>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        {% if fullmap == 'false' %}
+        <div class="col-md-4 col-xs-12 pos__access__infos">
+            {% if pos.access_not_blank %}
+                <h3 class="pos__access__infos__title">{{'frontoffice.pos.additional_info.access' | translate}}</h3>
+                <p class="pos__access__infos__text">{{pos.access | newline_to_br}}</p>
+            {% endif %}
+
+            {% if pos.parking_not_blank %}
+                <h3 class="pos__access__infos__title">{{'frontoffice.pos.additional_info.parking' | translate}}</h3>
+                <p class="pos__access__infos__text">{{pos.parking | newline_to_br}}</p>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</div>

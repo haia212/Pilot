@@ -1,0 +1,131 @@
+@font-face {
+    font-family: 'icomoon';
+    src: url('../fonts/icomoon.eot?316xds');
+    src: url('../fonts/icomoon.eot?#iefix316xds') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?316xds') format('truetype'),
+    url('../fonts/icomoon.woff?316xds') format('woff'),
+    url('../fonts/icomoon.svg?316xds#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@mixin icon($name:false) {
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    // Better Font Rendering
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    // scss-lint:disable all
+    @if $name {
+        @extend .icon-#{$name}:before;
+    }
+    // scss-lint:enable all
+
+}
+
+[class^='icon-'],
+[class*=' icon-'] {
+    @include icon;
+}
+
+// Copy the Icomoon icons under this line (don't touch above code)
+//-----------------------------------------------------------------------------
+
+.icon-bridge:before {
+    content: '\e600';
+}
+
+.icon-home:before {
+    content: '\f015';
+}
+
+.icon-breadcrumb:before {
+    content: '\f105';
+}
+
+.icon-validate:before {
+    content: '\f00c';
+}
+
+.icon-close:before {
+    content: '\f00d';
+}
+
+.icon-map-marker:before {
+    content: '\f041';
+}
+
+.icon-chevron-left:before {
+    content: '\f053';
+}
+
+.icon-chevron-right:before {
+    content: '\f054';
+}
+
+.icon-search:before {
+    content: '\f002';
+}
+
+.icon-envelope:before {
+    content: '\f003';
+}
+
+.icon-print:before {
+    content: '\f02f';
+}
+
+.icon-chevron-up:before {
+    content: '\f077';
+}
+
+.icon-chevron-down:before {
+    content: '\f078';
+}
+
+.icon-phone:before {
+    content: '\f095';
+}
+
+.icon-bars:before {
+    content: '\f0c9';
+}
+
+.icon-plus-square:before {
+    content: '\f196';
+}
+
+.icon-fax:before {
+    content: '\f1ac';
+}
+
+.icon-file-pdf:before {
+    content: '\f1c1';
+}
+
+.icon-paper-plane:before {
+    content: '\f1d9';
+}
+
+.icon-target:before {
+    content: '\e601';
+}
+
+.icon-arrow-right:before {
+    content: '\e602';
+}
+
+.icon-locate:before {
+    content: '\e603';
+}
+
+.icon-info:before {
+    content: '\e604';
+}

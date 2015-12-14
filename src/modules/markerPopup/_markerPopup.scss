@@ -1,0 +1,78 @@
+//------------------------------------------------------------------
+// Marker Popup
+//------------------------------------------------------------------
+
+.markerpopup {
+    display: table;
+    padding-bottom: 5px;
+    font-family: $font-family-sans-serif;
+    font-size: $font-size-base;
+
+    &__name {
+        font-size: $font-size-base + 3;
+        font-weight: bold;
+    }
+
+    &__address {
+        margin: 5px 0 0;
+    }
+
+    &__showphone,
+    &__phone {
+        margin: 5px 0;
+    }
+
+    &__phone {
+        font-size: $font-size-base + 1;
+
+        a {
+            color: $link-color;
+            font-weight: bold;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    &__hours {
+        &__label {
+            display: inline-block;
+            vertical-align: top;
+            font-weight: bold;
+        }
+
+        &--open {
+            display: inline-block;
+            color: $open-state-color;
+
+            span {
+                display: block;
+            }
+        }
+
+        &--close {
+            color: $close-state-color;
+        }
+    }
+
+    &__details {
+        margin-top: 5px;
+    }
+}
+
+// Popup Marker
+.lf_mapbubble_text {
+    max-width: 300px;
+    overflow: hidden;
+    text-align: left;
+
+}
+
+
+// Via Michelin
+.bubble-content {
+    .lf_mapbubble_text {
+        min-width: 180px;
+    }
+}

@@ -1,0 +1,127 @@
+//------------------------------------------------------------------
+// Home
+//------------------------------------------------------------------
+
+.home {
+    &__top {
+        &__title {
+            font-size: 22px;
+
+            @media (min-width: $screen-sm-min) {
+                font-size: 26px;
+            }
+
+            @media (min-width: $screen-md-min) {
+                font-size: 32px;
+            }
+        }
+    }
+
+    &__illustration {
+        position: relative;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        height: 300px;
+    }
+
+    &__search {
+        margin: 20px 0;
+
+        &__title,
+        &__or {
+            text-transform: uppercase;
+            font-size: 16px;
+
+            @media (min-width: $screen-md-min) {
+                font-size: 18px;
+            }
+        }
+
+        &__title {
+            margin-bottom: 10px;
+            text-align: center;
+
+            @media (min-width: $screen-sm-min) {
+                text-align: left;
+            }
+        }
+
+        &__or {
+            margin: 15px 0;
+            text-align: center;
+
+            @media (min-width: $screen-sm-min) {
+                margin: 0;
+                line-height: ($input-height-base * 2) + 10 + 35;
+            }
+
+            &:after {
+                top: 50%;
+                left: 0;
+                margin-top: -1px;
+                width: 100%;
+                height: 1px;
+
+                @media (min-width: $screen-sm-min) {
+                    top: 0;
+                    left: 50%;
+                    margin-left: -1px;
+                    width: 1px;
+                    height: 100%;
+                }
+            }
+        }
+
+        &__geoloc,
+        &__submit {
+            text-transform: uppercase;
+        }
+
+        &__geoloc {
+            @media (min-width: $screen-sm-min) {
+                height: ($input-height-base * 2) + 10;
+                font-size: 18px;
+            }
+        }
+
+        &__country,
+        &__filters {
+            margin-bottom: 10px !important;
+        }
+
+        &__paddingright {
+            padding-right: 10px !important;
+        }
+
+        &__paddingleft {
+            @media (min-width: $screen-sm-min) {
+                padding-left: 10px !important;
+            }
+        }
+    }
+
+    &__events {
+        background-color: transparent;
+
+        .title {
+            margin-top: 0;
+        }
+    }
+
+    .eventsactu,
+    .eventsimg,
+    .eventsslider {
+        margin-top: ($grid-gutter-width / 2);
+        margin-bottom: ($grid-gutter-width / 2);
+
+        @media (min-width: $screen-md-min) {
+            margin-top: $grid-gutter-width;
+            margin-bottom: $grid-gutter-width;
+        }
+    }
+
+    .searchform {
+        margin: 20px 0;
+    }
+}

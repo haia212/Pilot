@@ -1,0 +1,33 @@
+{% if footerlocal_page != 'point_of_sale' and page.type != null %}
+{% unless footerlocal_page == 'index' %}
+    {% assign add_hlevel = add_hlevel | plus:1 %}
+{% endunless %}
+
+<div class="citiesseo hidden-print">
+    <h{{2 | plus:heading_level}} class="citiesseo__title title">
+        {{'frontoffice.footer_seo.title' | translate}}
+    </h{{2 | plus:heading_level}}>
+
+    <div class="row">
+        {% for node in footerlocal[footerlocal_page].nodes %}
+        <div class="col-xs-12 citiesseo__column">
+            <h{{3 | plus:heading_level}} class="citiesseo__column__name">
+                <a href="{{node.url}}" class="citiesseo__column__name__link" data-lf-tracking='{"bind":"click","category":"localfooter","label":"{{node.label | replace: "'",""}}"}'>
+                    {{node.label}}
+                </a>
+            </h{{3 | plus:heading_level}}>
+
+            <ul class="citiesseo__column__cities">
+                {% for city in node.cities %}
+                <li class="citiesseo__column__cities__city">
+                    <a href="{{city.url}}" class="citiesseo__column__cities__city__link" data-lf-tracking='{"bind":"click","category":"localfooter","label":"{{city.label | replace: "'",""}}"}'>
+                        {{city.label}}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}

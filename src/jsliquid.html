@@ -1,0 +1,214 @@
+{% if frontoffice.map_api contains "google" or frontoffice.map_api contains "google_premier" or frontoffice.map_api contains "google_china" %}
+    {% assign googlemap = 'active' %}
+{% endif %}
+
+<script>
+    {{active_markers}}
+
+    {% if page.type == 'pos' or page.type == 'other' %}
+        var posMarkerCoordinates = {lat:{{pos.lat}},lng:{{pos.lng}}};
+    {% endif %}
+
+    $(document).ready(function() {
+        // Geolocation
+        function errorGeolocation(error) {
+            switch (error.code) {
+                case error.TIMEOUT:
+                    $('[data-lf-geolocalert-message]').html("{{'frontoffice.errors.geolocation.timeout' | translate}}");
+                    $('[data-lf-geolocalert]').stop(true, true).fadeIn('fast').delay(3000).fadeOut('fast');
+                    break;
+                case error.PERMISSION_DENIED:
+                    $('[data-lf-geolocalert-message]').html("{{'frontoffice.errors.geolocation.denied' | translate}}");
+                    $('[data-lf-geolocalert]').stop(true, true).fadeIn('fast').delay(3000).fadeOut('fast');
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    $('[data-lf-geolocalert-message]').html("{{'frontoffice.errors.geolocation.unavailable' | translate}}");
+                    $('[data-lf-geolocalert]').stop(true, true).fadeIn('fast').delay(3000).fadeOut('fast');
+                    break;
+            }
+        }
+
+        function successGeolocation(position) {
+            var url = '{{search_geolocation_url}}' + '?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude;
+            window.location.href = url;
+        }
+
+        function successItineraryGeolocation(position) {
+            $('[data-lf-pos-itinerary-start]').val(position.coords.latitude + ',' + position.coords.longitude);
+        }
+
+        $('[data-lf-searchform-geoloc]').click(function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(successGeolocation, errorGeolocation, {
+                    maximumAge: 50000,
+                    timeout: 20000
+                });
+            }
+        });
+
+        $('[data-lf-pos-itinerary-geolocation]').click(function(){
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(successItineraryGeolocation, errorGeolocation, {
+                    maximumAge: 50000,
+                    timeout: 20000
+                });
+            }
+        });
+
+        $('[data-lf-result-locate]').click(function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            var markerId = $(this).data('marker-id');
+            app.mapMarkers.locateOnMap(markerId);
+            {% if googlemap == 'active' %}
+            lf.app.listMap.markersByIndex[markerId].popup.setOptions({
+                pixelOffset: new google.maps.Size(-1, -40)
+            });
+            {% endif %}
+        });
+
+        {% if googlemap == 'active' %}
+        $('[data-lf-result-map]').on('lf.mapReady', function() {
+            showPosInList = function(ev) {
+                ev.data.popup.setOptions({
+                    pixelOffset: new google.maps.Size(-1, -40)
+                });
+            };
+
+            for (var keyActive in lf.app.listMap.activeMarkers) {
+                marker = lf.app.listMap.activeMarkers[keyActive];
+                if (typeof marker === 'object') {
+                    marker.bind('click', marker, showPosInList);
+                }
+            }
+            for (var keyInactive in lf.app.listMap.inactiveMarkers) {
+                marker = lf.app.listMap.inactiveMarkers[keyInactive];
+                if (typeof marker === 'object') {
+                    marker.bind('click', marker, showPosInList);
+                }
+            }
+        });
+        {% endif %}
+
+        $('form[data-lf-pos-addressrequest]').formValidation({
+            framework: 'bootstrap',
+            fields: {
+                email: {
+                    selector: 'input[data-lf-pos-addressrequest-email]',
+                    trigger: 'blur',
+                    validators: {
+                        notEmpty: {
+                            message: '{{"frontoffice.forms.error.mandatory" | translate}}'
+                        },
+                        emailAddress: {
+                            message: '{{"frontoffice.forms.error.email" | translate}}'
+                        }
+                    }
+                },
+                sms: {
+                    selector: 'input[data-lf-pos-addressrequest-sms]',
+                    trigger: 'blur',
+                    validators: {
+                        phone: {
+                        // Refers the input with name=countryCode, the hidden select we created to store the selected country in ISO-3166 format.
+                            country: 'countryCode',
+                            message: '{{"frontoffice.forms.error.phone" | translate}}'
+                        },
+                        notEmpty: {
+                            message: '{{"frontoffice.forms.error.onefieldrequired" | translate}}'
+                        }
+                    }
+                }
+            }
+        })
+        .on('keyup', 'input[data-lf-pos-addressrequest-email], input[data-lf-pos-addressrequest-sms]', function() {
+            var email = $('input[data-lf-pos-addressrequest-email]').val(),
+                sms   = $('input[data-lf-pos-addressrequest-sms]').val(),
+                fv    = $('form[data-lf-pos-addressrequest]').data('formValidation');
+
+            switch ($(this).attr('id')) {
+                // User is focusing the email field
+                case 'address_request_form_email':
+                    fv.enableFieldValidators('sms', email === '').revalidateField('sms');
+
+                    if (email && fv.getOptions('email', null, 'enabled') === false) {
+                        fv.enableFieldValidators('email', true).revalidateField('email');
+                    } else if (email === '' && sms !== '') {
+                        fv.enableFieldValidators('email', false).revalidateField('email');
+                    }
+                    break;
+
+                // User is focusing the sms field
+                case 'address_request_form_sms':
+                    if (sms === '') {
+                        fv.enableFieldValidators('email', true).revalidateField('email');
+                    } else if (email === '') {
+                        fv.enableFieldValidators('email', false).revalidateField('email');
+                    }
+
+                    if (sms && email === '' && fv.getOptions('sms', null, 'enabled') === false) {
+                        fv.enableFieldValidators('sms', true).revalidateField('sms');
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        })
+        .on('success.form.fv', function() {
+            return false;
+        });
+    });
+</script>
+
+<script>
+
+    // Add a script element as a child of the body
+    var eventPosId = '',
+        eventPage = '{{footerlocal_page}}',
+        leadtime = '';
+
+    {% if footerlocal_page == 'point_of_sale' %}
+        eventPosId = '{{pos.id}}';
+        {% if pos.use_form %}
+            leadtime = new Date().getTime();
+            $('[data-lf-pos-leadtime]').val(leadtime);
+        {% endif %}
+    {% endif %}
+
+    function loadEventGA() {
+        var element = document.createElement('script');
+        element.src = '/assets/frontoffice_events_ga_v2.js';
+
+        document.body.appendChild(element);
+    }
+
+    function loadImg() {
+        //Display images, background after page loading
+        $('[data-src]').each(function(){
+            var srcValue = $(this).data('src');
+            var displayStatus = $(this).data('display');
+
+            if(displayStatus === 'background') {
+                $(this).css('background-image', 'url(' + srcValue + ')');
+            }
+            else {
+                $(this).attr('src', srcValue).removeClass('img-before-loading');
+            }
+        });
+    }
+    // Check for browser support of event handling capability
+    if (window.addEventListener){
+        window.addEventListener('load', loadEventGA, false);
+        window.addEventListener('load', loadImg, false);
+    }
+    else if (window.attachEvent){
+        window.attachEvent('onload', loadEventGA);
+        window.attachEvent('onload', loadImg);
+    }
+    else {
+        window.onload = loadEventGA;
+        window.onload = loadImg;
+    }
+</script>
+

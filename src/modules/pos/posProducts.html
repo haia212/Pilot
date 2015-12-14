@@ -1,0 +1,23 @@
+<div class="pos__products" id="lf_products">
+    <h2 class="pos__products__title title">{{'frontoffice.pos_tabs.products.title' | translate}}</h2>
+    <div class="row sorted-columns" data-lf-sortedcolumns>
+        {% for product in products %}
+        <div class="col-md-4 col-sm-6 col-xs-12 pos__products__column" data-st-ordered="{{product.css_class}}">
+            <div class="pos__products__item">
+                {% if product.media.url and product.media.url.size > 0 and product.media.url != '/shared/images/blank.gif' %}
+                <img src="{{frontoffice.view_short_template_path}}/images/empty.png" class="pos__products__item__img" data-src="{{product.media.url}}" alt="{{product.alt}}" />
+                {% endif %}
+
+                <div class="pos__products__item__body">
+                    <h3 class="pos__products__item__body__title">
+                        {{product.label}}
+                    </h3>
+                    <p class="pos__products__item__body__text">
+                        {{product.description}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
