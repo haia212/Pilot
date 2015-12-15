@@ -7,3 +7,149 @@
         width: 100%;
     }
 }
+
+#footer {
+
+
+    padding: 0;
+    clear: both;
+    border: 0;
+    position: relative;
+    background-color: #eaeaea;
+
+    #blockadvantages {
+        width: 73%;
+        float: left;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+
+    #blockadvantages_b2b {
+        list-style: none;
+        display: inline-block;
+    }
+
+    ul#blockadvantages_b2b  {
+        padding: 0;
+        width: 100%;
+    }
+
+    #blockadvantages_b2b li {
+        width: 25%;
+        height: 49px;
+        width: 174px;
+
+        float: left;
+        text-decoration: none;
+        background: url('../images/footer/bg_advantage.png') repeat-x;
+    }
+
+    #blockadvantages_b2b li:hover {
+        background-position: 0 -49px;
+    }
+
+    #blockadvantages_b2b li .text_container {
+        padding: 9px 0 0 25px;
+        text-align: left;
+    }
+    
+    #blockadvantages_b2b > li > .text_container > a {
+        font-size: 10px;
+        color: #3c3c3c;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    #blockadvantages_b2b li a {
+        display: block;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    #blockadvantages_b2b li p {
+        color: #fff;
+        text-decoration: none;
+        margin: 0;
+    }
+
+    #blockadvantages_b2b li .content a {
+        font-size: 11px;
+        color: #989898;
+        text-decoration: none;
+    }
+
+    #blockadvantages_b2b li.last-child {
+        margin: 0;
+    }
+
+    #blockadvantages_b2b li .img_contain {
+        padding: 3px 0 0 25px;
+        text-align: left;
+    }
+
+    #facebook_push {
+        float: left;
+        margin: 15px 0 0 20px;
+        width: 7.7%;
+
+        @media (max-width: $screen-sm-min) {
+            width: 22%;
+        }
+    }
+
+    #facebook_push > a {
+        display: block;
+        font-size: 10px;
+        color: #888;
+        text-decoration: none;
+        float: left;
+    }
+
+    #facebook_push img {
+        float: left;
+    }
+
+    #facebook_push h4 {
+        float: left;
+        line-height: 13px;
+        height: 13px;
+        margin-left: 4px;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    #facebook_push h4 a {
+        color: #000;
+        font-size: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    #top_links_block {
+        float: right;
+        list-style: none;
+        width: 16.3%;
+        padding: 5px 0 0 0;
+        text-align: right;
+
+        @media (max-width: $screen-sm-min) {
+            float: left;
+            width: 100%;
+        }
+    }
+
+    #top_links_block li:FIRST-CHILD {
+        float: none;
+    }
+ 
+    #top_links_block li {
+        float: right;
+        margin-left: 8px;
+    }
+
+
+    #top_links_block li a {
+        font-size: 10px;
+        color: #888;
+    }
+}
