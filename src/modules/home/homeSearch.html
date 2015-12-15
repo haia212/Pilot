@@ -5,20 +5,20 @@
 <div class="home__search hidden-print" data-lf-searchform>
     <div class="row row-no-padding">
         <div class="col-md-5 col-sm-5 col-xs-12">
-            <div class="home__search__title">{{'frontoffice.homesearch.geoloc' | translate}}</div>
+            <div class="home__search__title title">{{'frontoffice.homesearch.geoloc' | translate}}</div>
             <button type="button" class="btn btn-default btn-block home__search__geoloc" data-lf-searchform-geoloc data-lf-tracking='{"bind":"click","category":"geolocation"}'>
                 <em class="icon-target"></em> <span>{{'frontoffice.search.geolocation_search.button' | translate}}</span>
             </button>
         </div>
         <div class="col-md-2 col-sm-2 col-xs-12">
-            <div class="home__search__or strike-behind">
+            <div class="home__search__or strike-behind title">
                 <span>{{'frontoffice.pos.address_request.labels.or' | translate}}</span>
             </div>
         </div>
 
         <div class="col-md-5 col-sm-5 col-xs-12">
             <form action="/search" method="GET" data-disable="false" data-lf-tracking='{"bind":"submit","category":"searchform"}'>
-                <div class="home__search__title">{{'frontoffice.homesearch.keyword' | translate}}</div>
+                <div class="home__search__title title">{{'frontoffice.homesearch.keyword' | translate}}</div>
                 <div class="row row-no-padding">
                     {% if frontoffice.multiple_country_search %}
                     <div class="{{selectorwidth}} col-xs-12">
@@ -49,7 +49,7 @@
                         {% endfor %}
                     {% endif %}
                 </div>
-                <div class="row row-no-padding">
+                <div class="row row-no-padding searchform-group">
                     <div class="col-md-8 col-sm-8 col-xs-8 home__search__paddingright">
                         <div class="form-group">
                             <div class="typeahead-container">

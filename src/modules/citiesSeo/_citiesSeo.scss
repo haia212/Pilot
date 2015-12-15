@@ -39,6 +39,10 @@
 
         &__name {
             margin: 0;
+
+            &__link {
+                color: $brand-color;
+            }
         }
 
         &__cities {
