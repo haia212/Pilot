@@ -3,13 +3,6 @@
 //------------------------------------------------------------------
 
 .header {
-    img {
-        width: 100%;
-
-        &.logo {
-            max-width: 200px;
-        }
-    }
 
     .container {
         padding: 0;
@@ -26,6 +19,7 @@
     font-size: 12px;
     font-weight: bold;
     color: #fff;
+    padding: 5px 0;
 }
 
 
