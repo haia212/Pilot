@@ -16,11 +16,11 @@
 
         {% if results.size !=0 %}
         <div class="row row-no-padding">
-            <div class="col-lg-8 col-md-7 col-sm-6 col-xs-12 hidden-xs pull-right hidden-print">
+            <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12 hidden-xs pull-right hidden-print">
                 <div id="lf_listmap_canvas" class="result__map" aria-hidden="true" data-lf-result-map></div>
             </div>
             {% paginate total by 2 %}
-            <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
+            <div class="col-lg-6 col-md-5 col-sm-6 col-xs-12">
                 <div class="result__content {% if paginate and paginate.parts.size !=0 %}paginate{% endif %}">
                     {% for result in results %}
                         {% if result.title != nil %}

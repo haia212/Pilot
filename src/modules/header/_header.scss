@@ -19,6 +19,7 @@
 #header {
     position: relative;
     z-index: 10;
+    margin-bottom: 20px;
 }
 
 #header_logo img.logo {
@@ -27,70 +28,6 @@
     color: #fff;
 }
 
-
-#header #header_user {
-    float: right;
-}
-
-#header_user ul {
-    display: inline-block;
-    margin-top: 15px;
-}
-
-#header_nav li {
-    list-style: none;
-}
-
-#header_user #your_account {
-    text-align: center;
-    height: 15px;
-}
-
-#header_user li {
-    margin: 0;
-}
-
-#header_user #your_account a {
-    font-size: 12px;
-    color: #3c3c3c;
-}
-
-#header_user #shopping_cart a, #header_user #your_account a {
-    padding: 0;
-    float: left;
-    display: block;
-}
-
-#header_user #shopping_cart {
-    height: 35px;
-    margin-top: 5px;
-}
-
-#header_user #shopping_cart a.img {
-    margin-right: 10px;
-    height: 35px;
-}
-
-#header_user #shopping_cart a {
-    text-decoration: none;
-}
-
-#header_user #shopping_cart a, #header_user #your_account a {
-    padding: 0;
-    float: left;
-    display: block;
-}
-
-#header_user #shopping_cart span.title-cart {
-    color: #ad0200;
-    font-size: 12px;
-}
-
-#header_user span {
-    color: #989898;
-    font-size: 10px;
-    line-height: 13px;
-}
 
 #header #adtm_menu {
     float: none;

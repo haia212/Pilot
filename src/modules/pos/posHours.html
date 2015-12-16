@@ -68,12 +68,5 @@
         {% endfor %}
         <meta itemprop="openingHours" content="{{strhours | replace_first: ',', ''}}">
     </div>
-    <div class="pos__hours__timer hidden-print" data-timer-id="{{pos_hours_id}}">
-        <div class="pos__hours__timer--closing" data-lf-pos-hours-timer-closing>{{'frontoffice.opening_hours.timer.closing' | translate: "group",group.name}}
-            <span class="pos__hours__timer__count" data-lf-pos-hours-timer-count> {{'frontoffice.opening_hours.timer.title' | translate}}</span>
-        </div>
-        <div class="pos__hours__timer--open" data-lf-pos-hours-timer-open>{{'frontoffice.opening_hours.timer.open' | translate: "group",group.name}}</div>
-        <div class="pos__hours__timer--close" data-lf-pos-hours-timer-close>{{'frontoffice.opening_hours.timer.closed' | translate: "group",group.name}}</div>
-    </div>
     {% endfor %}
 </div>
