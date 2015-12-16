@@ -49,69 +49,71 @@
             {% endif %}
         </div>
 
-        <div class="pos__infos row">
-            <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
-                <h1 class="pos__infos__name title" itemprop="legalName">{{pos.name}}</h1>
-                {% if pos.nearby_big_city_not_blank and pos.nearby_big_city != pos.city %}
-                <div class="pos__content__nearbycity">{{'frontoffice.pos.nearby_big_city.label' | translate}} {{pos.nearby_big_city}}</div>
-                {% endif %}
-                <address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="pos__infos__address">
-                    <div itemprop="streetAddress">
-                        {{pos.address1}}<br>
-                        {% if pos.address2 and pos.address2.size !=0  %}
-                        {{pos.address2}}<br>
-                        {% endif %}
-                    </div>
-                    <div>
-                        {% if zip_code =='zip' %}
-                        <span itemprop="addressLocality">{{pos.city}}</span>, <span itemprop="addressRegion">{{state.name}}</span> <span itemprop="postalCode">{{pos.postal_code}}</span>
-                        {% else %}
-                        <span itemprop="postalCode">{{pos.postal_code}}</span> <span itemprop="addressLocality">{{pos.city}}</span>
-                        {% endif %}
-                    </div>
-                </address>
-                {% if hide_phone == 'true' %}
-                {% assign phone_class = 'hidden' %}
-                <button class="btn btn-default pos__infos__showphone hidden-print" data-lf-pos-showphone data-lf-tracking='{"bind":"click","category":"posshowphone","label":"{{pos.name | replace: "'",""}}##{{pos_phone}}"}'>{{'frontoffice.pos.details.show_phone' | translate}}</button>
-                {% endif %}
+        <div class="pos__infos row text-center">
 
-                {% if pos_phone.size != 0 %}
-                <div class="pos__infos__phone {{phone_class}} hidden-xs" data-lf-pos-phone>
-                    <span class="pos__infos__phone__label">{{'frontoffice.pos.details.phone' | translate}}</span>
-                    <span itemprop="telephone">{{pos_phone}} </span>
-                    <span class="pos__infos__phone__comment small">{{pos.phone_comment}}</span>
+            <h1 class="pos__infos__name title" itemprop="legalName">{{pos.name}}</h1>
+            {% if pos.nearby_big_city_not_blank and pos.nearby_big_city != pos.city %}
+            <div class="pos__content__nearbycity">{{'frontoffice.pos.nearby_big_city.label' | translate}} {{pos.nearby_big_city}}</div>
+            {% endif %}
+            <address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="pos__infos__address">
+                <div itemprop="streetAddress">
+                    {{pos.address1}}<br>
+                    {% if pos.address2 and pos.address2.size !=0  %}
+                    {{pos.address2}}<br>
+                    {% endif %}
                 </div>
-
-                <a href="tel:{{pos_phone | remove:' '}}" class="pos__infos__phone btn btn-block btn-default hidden-sm hidden-md hidden-lg {{phone_class}} hidden-print" data-lf-tracking='{"bind":"click","category":"pos{{phone_type}}","label":"{{pos.name | replace: "'",""}}##{{pos_phone}}"}'>
-                    <em class="icon-phone"></em>
-                    <span>{{pos_phone}} </span>
-                    <span class="pos__infos__phone__comment small">{{pos.phone_comment}}</span>
-                </a>
-                {% endif %}
-
-                {% if pos.fax and pos.fax.size != 0 %}
-                <div class="pos__infos__fax {{phone_class}} hidden-xs" data-lf-pos-fax>
-                    <span class="pos__infos__fax__label">{{'frontoffice.pos.details.fax' | translate}}</span>
-                    <span itemprop="faxNumber">{{pos.fax}}</span>
+                <div>
+                    {% if zip_code =='zip' %}
+                    <span itemprop="addressLocality">{{pos.city}}</span>, <span itemprop="addressRegion">{{state.name}}</span> <span itemprop="postalCode">{{pos.postal_code}}</span>
+                    {% else %}
+                    <span itemprop="postalCode">{{pos.postal_code}}</span> <span itemprop="addressLocality">{{pos.city}}</span>
+                    {% endif %}
                 </div>
-                {% endif %}
+            </address>
+            {% if hide_phone == 'true' %}
+            {% assign phone_class = 'hidden' %}
+            <button class="btn btn-default pos__infos__showphone hidden-print" data-lf-pos-showphone data-lf-tracking='{"bind":"click","category":"posshowphone","label":"{{pos.name | replace: "'",""}}##{{pos_phone}}"}'>{{'frontoffice.pos.details.show_phone' | translate}}</button>
+            {% endif %}
+
+            {% if pos_phone.size != 0 %}
+            <div class="pos__infos__phone {{phone_class}} hidden-xs" data-lf-pos-phone>
+                <span class="pos__infos__phone__label">{{'frontoffice.pos.details.phone' | translate}}</span>
+                <span itemprop="telephone">{{pos_phone}} </span>
+                <span class="pos__infos__phone__comment small">{{pos.phone_comment}}</span>
             </div>
 
-            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
-                <div class="hidden-print">
-                    {% if frontoffice.use_newsletter_request %}
-                    <div class="pos__infos__cta">
-                        <button class="btn btn-default btn-block pos__infos__cta__newsletter" data-toggle="modal" data-target="#pos-newsletterrequest" data-lf-tracking='{"bind":"click","category":"shownewsletter","label":"{{pos.name | replace: "'",""}}"}'><em class="icon-envelope"></em> {{'frontoffice.pos.newsletter_request.title' | translate}}</button>
-                    </div>
-                    {% endif %}
-                    {% if frontoffice.use_address_request %}
-                    <div class="pos__infos__cta">
-                        <button class="btn btn-default btn-block pos__infos__cta__addressrequest" data-toggle="modal" data-target="#pos-addressrequest" data-lf-tracking='{"bind":"click","category":"showaddressrequest","label":"{{pos.name | replace: "'",""}}"}'><em class="icon-paper-plane"></em> {{'frontoffice.pos.address_request.title' | translate}}</button>
-                    </div>
-                    {% endif %}
-                    <div class="pos__infos__cta hidden-xs">
-                        <button onclick="javascript:window.print()" class="btn btn-default btn-block pos__infos__cta__print" data-lf-tracking='{"bind":"click","category":"printpospage","label":"{{pos.name | replace: "'",""}}"}'><em class=icon-print></em> {{'frontoffice.pos.print' | translate}}</button>
-                    </div>
+            <div class="hidden-sm hidden-md hidden-lg hidden-print row row-no-padding pos__infos__phone__cta">
+                <div class="col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
+                    <a href="tel:{{pos_phone | remove:' '}}" class="pos__infos__phone btn btn-default btn-block {{phone_class}}" data-lf-tracking='{"bind":"click","category":"pos{{phone_type}}","label":"{{pos.name | replace: "'",""}}##{{pos_phone}}"}'>
+                        <em class="icon-phone"></em>
+                        <span>{{pos_phone}} </span>
+                        <span class="pos__infos__phone__comment small">{{pos.phone_comment}}</span>
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if pos.fax and pos.fax.size != 0 %}
+            <div class="pos__infos__fax {{phone_class}} hidden-xs" data-lf-pos-fax>
+                <span class="pos__infos__fax__label">{{'frontoffice.pos.details.fax' | translate}}</span>
+                <span itemprop="faxNumber">{{pos.fax}}</span>
+            </div>
+            {% endif %}
+
+
+            <div class="hidden-print row row-no-padding">
+                {% if frontoffice.use_newsletter_request %}
+                <div class="pos__infos__cta col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
+                    <button class="btn btn-default btn-block pos__infos__cta__newsletter" data-toggle="modal" data-target="#pos-newsletterrequest" data-lf-tracking='{"bind":"click","category":"shownewsletter","label":"{{pos.name | replace: "'",""}}"}'><em class="icon-envelope"></em> {{'frontoffice.pos.newsletter_request.title' | translate}}</button>
+                </div>
+                {% endif %}
+                {% if frontoffice.use_address_request %}
+                <div class="pos__infos__cta col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
+                    <button class="btn btn-default btn-block pos__infos__cta__addressrequest" data-toggle="modal" data-target="#pos-addressrequest" data-lf-tracking='{"bind":"click","category":"showaddressrequest","label":"{{pos.name | replace: "'",""}}"}'><em class="icon-paper-plane"></em> {{'frontoffice.pos.address_request.title' | translate}}</button>
+                </div>
+                {% endif %}
+                <div class="pos__infos__cta col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3 hidden-xs">
+                    <button onclick="javascript:window.print()" class="btn btn-default btn-block pos__infos__cta__print" data-lf-tracking='{"bind":"click","category":"printpospage","label":"{{pos.name | replace: "'",""}}"}'><em class=icon-print></em> {{'frontoffice.pos.print' | translate}}</button>
                 </div>
             </div>
         </div>
@@ -121,77 +123,7 @@
         {% include 'poshours' %}
     </div>
 
-    <div class="container">
-        <div class="pos-onscreen" data-lf-pos-onscreen></div>
-        <div class="pos__tabs hidden-xs" id="pos-tabs" data-lf-pos-tabs>
-            <div class="container">
-                <nav class="navbar navbar-default">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#pos-tabs-nav" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="pos-tabs-nav">
-                        <ul class="nav navbar-nav">
-                            {% if pos.description and pos.description.size != 0 %}
-                            <li class="pos__tabs__item" data-tabs-id="tabs-presentation" data-lf-tracking='{"bind":"click","category":"postabs","label":"tabs-presentation"}'>
-                                <a href="#tabs-presentation">
-                                    <h2 class="pos__tabs__item__title">{{'frontoffice.pos_tabs.presentation.tab' | translate}}</h2>
-                                </a>
-                            </li>
-                            {% endif %}
-                            <li class="pos__tabs__item" data-tabs-id="tabs-access" data-lf-tracking='{"bind":"click","category":"postabs","label":"tabs-access"}'>
-                                <a href="#tabs-access">
-                                    <h2 class="pos__tabs__item__title">{{'frontoffice.pos_tabs.access.tab' | translate}}</h2>
-                                </a>
-                            </li>
-                            {% if my_events.size > 0 %}
-                            <li class="pos__tabs__item" data-tabs-id="tabs-events" data-lf-tracking='{"bind":"click","category":"postabs","label":"tabs-events"}'>
-                                <a href="#tabs-events">
-                                    <h2 class="pos__tabs__item__title">{{'frontoffice.pos_tabs.events.tab' | translate}}</h2>
-                                </a>
-                            </li>
-                            {% endif %}
-                            {% if pos.use_form %}
-                            <li class="pos__tabs__item" data-tabs-id="tabs-contact" data-lf-tracking='{"bind":"click","category":"postabs","label":"tabs-contact"}'>
-                                <a href="#tabs-contact">
-                                    <h2 class="pos__tabs__item__title">{{'frontoffice.pos_tabs.contact.tab' | translate}}</h2>
-                                </a>
-                            </li>
-                            {% endif %}
-                            {% if pos.smart_tags.products and pos.smart_tags.products.size != 0 %}
-                            <li class="pos__tabs__item" data-tabs-id="tabs-products" data-lf-tracking='{"bind":"click","category":"postabs","label":"tabs-products"}'>
-                                <a href="#tabs-products">
-                                    <h2 class="pos__tabs__item__title">{{'frontoffice.pos_tabs.products.tab' | translate}}</h2>
-                                </a>
-                            </li>
-                            {% endif %}
-                            {% if smart_tags.services and smart_tags.services.size != 0 %}
-                            <li class="pos__tabs__item" data-tabs-id="tabs-services" data-lf-tracking='{"bind":"click","category":"postabs","label":"tabs-services"}'>
-                                <a href="#tabs-services">
-                                    <h2 class="pos__tabs__item__title">{{'frontoffice.pos_tabs.services.tab' | translate}}</h2>
-                                </a>
-                            </li>
-                            {% endif %}
-                            {% if content_categories == 'true' %}
-                            <li class="pos__tabs__item" data-tabs-id="tabs-categories" data-lf-tracking='{"bind":"click","category":"postabs","label":"tabs-categories"}'>
-                                <a href="#tabs-categories">
-                                    <h2 class="pos__tabs__item__title">{{'frontoffice.pos_tabs.categories.tab' | translate}}</h2>
-                                </a>
-                            </li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                    <!-- /.navbar-collapse -->
-                </nav>
-            </div>
-        </div>
-    </div>
+    
 
     <div class="pos__scrolling" data-lf-pos-scrolling>
         {% if pos.description and pos.description.size != 0 %}
@@ -247,12 +179,6 @@
             </div>
         </div>
         {% endif %}
-    </div>
-
-    <div class="container spaced">
-        <div class="hidden-print">
-            {% include 'eventsimg' with 'lf_small_picture,2' %}
-        </div>
     </div>
 
     {% if frontoffice.use_newsletter_request %}

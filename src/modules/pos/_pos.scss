@@ -2,6 +2,16 @@
 // PointOfSale
 //------------------------------------------------------------------
 .pos {
+
+    .title {
+        margin: 20px 0 40px; 
+        text-align: left;
+    }
+    
+    .pos__infos__name.title {
+        text-align: center;
+    }
+
     &__print {
         &__logo {
             display: none;
@@ -20,32 +30,55 @@
 
     &__carousel {
         .left {
+            left: -5%;
             background-image: none;
+
+            @media (min-width: $screen-sm-min) {
+                left: -10%;
+            }
         }
 
         .right {
+            right: -5%;
             background-image: none;
+
+            @media (min-width: $screen-sm-min) {
+                right: -10%;
+            }
+        }
+
+        .carousel-control, 
+        .carousel-control:hover {
+            color: $text-color;
         }
     }
 
     &__infos {
         margin-top: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
+
+        @media (min-width: $screen-sm-min) {
+            padding-right: 10px;
+            padding-left: 10px;
+        }
 
         &__name {
-            margin: 0;
-            text-align: left;
+            margin: 20px 0;
         }
 
         &__address,
         &__phone,
         &__fax {
-            font-size: $font-size-base + 2;
+            font-size: $font-size-base;
         }
 
         &__showphone,
         &__phone {
             margin: 5px 0;
+
+            &__cta {
+                margin-top: 40px;
+            }
         }
 
         &__address {
@@ -59,7 +92,7 @@
             &:first-child {
 
                 @media (min-width: $screen-sm-min) {
-                    margin-top: 0;
+                    margin-top: 40px;
                 }
             }
 
@@ -175,12 +208,6 @@
         }
     }
 
-    &__scrolling {
-        &__section:nth-child(even) {
-            background-color: $scrolling-bg-color;
-        }
-    }
-
     //Sections
     &__presentation {
         &__description {
@@ -246,6 +273,10 @@
         }
 
         &__infos {
+            @media (max-width: $screen-sm-min) {
+                margin-top: 30px;
+            }
+
             &__title {
                 margin: 0;
                 font-size: 18px;
@@ -607,3 +638,4 @@
         }
     }
 }
+

@@ -80,8 +80,8 @@
 
         &__geoloc {
             @media (min-width: $screen-sm-min) {
-                height: ($input-height-base * 2) + 10;
-                font-size: 18px;
+                height: 65px;
+                font-size: 14px;
             }
         }
 
@@ -123,5 +123,9 @@
 
     .searchform {
         margin: 20px 0;
+
+        &-group {
+            padding-top: 13px;
+        }
     }
 }

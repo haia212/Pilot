@@ -14,15 +14,7 @@
     }
 
     &__top {
-        margin: 0 0 10px;
-
-        @media (min-width: $screen-sm-min) {
-            margin: 0 0 15px;
-        }
-
-        @media (min-width: $screen-sm-min) {
-            margin: 0 0 20px;
-        }
+        margin: 50px 0 40px;
 
         &__title {
             margin-bottom: 0;
@@ -46,6 +38,7 @@
         overflow-y: auto;
 
         @media (min-width: $screen-sm-min) {
+            padding-right: 50px;
             max-height: $result-height-content;
 
             &.paginate {
@@ -141,6 +134,7 @@
 
             &__name {
                 margin: 0;
+                color: $brand-color;
                 font-size: $font-size-base + 3;
                 font-weight: bold;
             }
