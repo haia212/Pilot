@@ -171,6 +171,22 @@ body {
 }
 
 .title {
+    position: relative;
     color: $title-color;
     font-family: $font-family-title-sans-serif;
+    font-weight: bold;
+
+    &.line {
+        top: -35px;
+        border-bottom: 1px solid $dusty-gray;
+
+        span {
+            display: inline-block;
+            position: relative;
+            top: 30px;
+            background-color: $white;
+            padding: 15px;
+        }
+        
+    }
 }

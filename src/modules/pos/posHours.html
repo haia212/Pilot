@@ -5,7 +5,7 @@
     {% for group in opening_hours.groups %}
     {% if group.has_distant_exceptional_hours %}
     <div class="pos__hours__exceptionnal" data-lf-pos-hours-exceptionnal>
-        <h2 class="pos__hours__exceptionnal__title title">{{opening_hours.title_exceptional}}</h2>
+        <h2 class="pos__hours__exceptionnal__title title line"><span>{{opening_hours.title_exceptional}}</span></h2>
         {% for eoh in group.distant_exceptional_hours %}
         <span class="pos__hours__exceptionnal__item">
             {% if eoh.closed? %}
@@ -25,7 +25,7 @@
     {% endif %}
     {% endfor %}
     {% for group in opening_hours.groups %}
-    <h2 class="pos__hours__title title">{{opening_hours.title}} {{group.name}}</h2>
+    <h2 class="pos__hours__title title line"><span>{{opening_hours.title}} {{group.name}}</span></h2>
     {% assign pos_hours_id = forloop.index0 %}
     {% for day in group.days %}
     {% if day.is_today %}
