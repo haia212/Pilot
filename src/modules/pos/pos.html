@@ -164,6 +164,33 @@
         </div>
         {% endif %}
 
+
+        <div class="pos__scrolling__section">
+            <div class="container hidden-print spaced" id="tabs-products">
+                {% include 'pospromotions' with 'promotions' %}
+            </div>
+        </div>
+        <div class="pos__scrolling__section">
+            <div class="container hidden-print spaced" id="tabs-products">
+                {% include 'pospromotions' with 'promotions2' %}
+            </div>
+        </div>
+        <div class="pos__scrolling__section">
+            <div class="container hidden-print spaced" id="tabs-products">
+                {% include 'pospromotions' with 'promotions3' %}
+            </div>
+        </div>
+        <div class="pos__scrolling__section">
+            <div class="container hidden-print spaced" id="tabs-products">
+                {% include 'pospromotions' with 'promotions4' %}
+            </div>
+        </div>
+        <div class="pos__scrolling__section">
+            <div class="container hidden-print spaced" id="tabs-products">
+                {% include 'pospromotions' with 'promotions5' %}
+            </div>
+        </div>
+
         {% if smart_tags.services and smart_tags.services.size != 0 %}
         <div class="pos__scrolling__section">
             <div class="container hidden-print spaced" id="tabs-services">

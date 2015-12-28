@@ -8,7 +8,7 @@
     {% assign majorcities = 'true' %}
 {% endfor %}
 <div class="pos__access">
-    <h2 class="pos__access__title title">{{'frontoffice.pos_tabs.access.title' | translate}}</h2>
+    <h2 class="pos__access__title title line"><span>{{'frontoffice.pos_tabs.access.title' | translate}}</span></h2>
     <div itemprop="geo" itemscope="" itemtype="http://schema.org/GeoCoordinates">
         <meta itemprop="latitude" content="{{pos.lat | strip_html | truncate: 9, ''}}">
         <meta itemprop="longitude" content="{{pos.lng | strip_html | truncate: 9, ''}}">
