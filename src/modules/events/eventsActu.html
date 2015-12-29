@@ -3,7 +3,7 @@
 
 <!-- Detailled event -->
 <div class="{{eventsactu}} eventsactu hidden-print">
-    <h{{2 | plus:add_hlevel}} class="eventsactu__title title">{{events.category_label}}</h{{2 | plus:add_hlevel}}>
+    <h{{2 | plus:add_hlevel}} class="eventsactu__title title line"><span>{{events.category_label}}</span></h{{2 | plus:add_hlevel}}>
     {% for event in events.all_by_category %}
     <div class="eventsactu__content" {% if footerlocal_page == "point_of_sale" %}itemscope itemtype="http://schema.org/Event" {% endif %} data-lf-tracking='{"bind":"display","category":"eventsactu","label":"{{event.name | replace: "'",""}}##{{event.id}}"}'>
         <div class="{{event.class_name}} row">

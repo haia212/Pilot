@@ -164,31 +164,21 @@
         </div>
         {% endif %}
 
+        <div class="container spaced">
+            {% include 'eventsactu' with 'promotions' %}
+        </div>
 
-        <div class="pos__scrolling__section">
-            <div class="container hidden-print spaced" id="tabs-products">
-                {% include 'pospromotions' with 'promotions' %}
-            </div>
+        <div class="container spaced">
+            {% include 'eventsactu' with 'promotions2' %}
         </div>
-        <div class="pos__scrolling__section">
-            <div class="container hidden-print spaced" id="tabs-products">
-                {% include 'pospromotions' with 'promotions2' %}
-            </div>
+        <div class="container spaced">
+            {% include 'eventsactu' with 'promotions3' %}
         </div>
-        <div class="pos__scrolling__section">
-            <div class="container hidden-print spaced" id="tabs-products">
-                {% include 'pospromotions' with 'promotions3' %}
-            </div>
+        <div class="container spaced">
+            {% include 'eventsactu' with 'promotions4' %}
         </div>
-        <div class="pos__scrolling__section">
-            <div class="container hidden-print spaced" id="tabs-products">
-                {% include 'pospromotions' with 'promotions4' %}
-            </div>
-        </div>
-        <div class="pos__scrolling__section">
-            <div class="container hidden-print spaced" id="tabs-products">
-                {% include 'pospromotions' with 'promotions5' %}
-            </div>
+        <div class="container spaced">
+            {% include 'eventsactu' with 'promotions5' %}
         </div>
 
         {% if smart_tags.services and smart_tags.services.size != 0 %}

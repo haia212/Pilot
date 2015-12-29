@@ -177,6 +177,7 @@ body {
     font-weight: bold;
 
     &.line {
+        display: block;
         top: -35px;
         border-bottom: 1px solid $dusty-gray;
 
