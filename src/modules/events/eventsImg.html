@@ -8,42 +8,45 @@
 {% assign events = events[eventinit.first] %}
 
 {% if events.all_events.collection.size != 0 %}
-<div class="{{eventsimg}} eventsimg hidden-print" aria-hidden="true" >
-    <div class="row">
-        {% order events.all_events by starts_at with DESC %}
-        {% for event in ordered_events.collection %}
-        <div class="col-sm-{{nbcol}} col-xs-12 {{event.class_name}} eventsimg__content" {% if footerlocal_page == "point_of_sale" %}itemscope itemtype="http://schema.org/Event" {% endif %} data-lf-tracking='{"bind":"display","category":"eventsimg","label":"{{event.name | replace: "'",""}}##{{event.id}}"}'>
-            {% if event.media.image? %}
-                {% capture event_img %}<img {% if footerlocal_page == "point_of_sale" %}itemprop="image"{% endif %} src="{{frontoffice.view_short_template_path}}/images/empty.png" data-src="{{event.media.display_url}}" class="eventsimg__content__img img-before-loading" alt="{{event.label}}" />{% endcapture %}
-                {% if event.pdf.pdf? %}
-                <a {% if footerlocal_page == "point_of_sale" %}itemprop="url"{% endif %} href="{{event.pdf.url}}" class="eventsimg__content__pdf eventpdf" target="_blank" data-lf-tracking='{"bind":"click","category":"eventsimg-pdf","label":"{{event.name | replace: "'",""}}##{{event.id}}"}'>
-                    {{event_img}}
-                </a>
-                {% elsif event.url!="" %}
-                <a {% if footerlocal_page == "point_of_sale" %}itemprop="url"{% endif %} href="{{event.url}}" class="eventsimg__content__link" {% if event.open_link_in_a_new_window %}target="_blank"{% endif %} data-lf-tracking='{"bind":"click","category":"eventsimg-link","label":"{{event.name | replace: "'", ""}}##{{event.id}}"}'>
-                    {{event_img}}
-                </a>
-                {% else %}
-                    {{event_img}}
+<div class="container spaced">
+    <h2 class="eventsactu__title title line"><span>{{'frontoffice.pos_tabs.events.title' | translate}}</span></h2>
+    <div class="{{eventsimg}} eventsimg hidden-print" aria-hidden="true" >
+        <div class="row">
+            {% order events.all_events by starts_at with DESC %}
+            {% for event in ordered_events.collection %}
+            <div class="col-sm-{{nbcol}} col-xs-12 {{event.class_name}} eventsimg__content" {% if footerlocal_page == "point_of_sale" %}itemscope itemtype="http://schema.org/Event" {% endif %} data-lf-tracking='{"bind":"display","category":"eventsimg","label":"{{event.name | replace: "'",""}}##{{event.id}}"}'>
+                {% if event.media.image? %}
+                    {% capture event_img %}<img {% if footerlocal_page == "point_of_sale" %}itemprop="image"{% endif %} src="{{frontoffice.view_short_template_path}}/images/empty.png" data-src="{{event.media.display_url}}" class="eventsimg__content__img img-before-loading" alt="{{event.label}}" />{% endcapture %}
+                    {% if event.pdf.pdf? %}
+                    <a {% if footerlocal_page == "point_of_sale" %}itemprop="url"{% endif %} href="{{event.pdf.url}}" class="eventsimg__content__pdf eventpdf" target="_blank" data-lf-tracking='{"bind":"click","category":"eventsimg-pdf","label":"{{event.name | replace: "'",""}}##{{event.id}}"}'>
+                        {{event_img}}
+                    </a>
+                    {% elsif event.url!="" %}
+                    <a {% if footerlocal_page == "point_of_sale" %}itemprop="url"{% endif %} href="{{event.url}}" class="eventsimg__content__link" {% if event.open_link_in_a_new_window %}target="_blank"{% endif %} data-lf-tracking='{"bind":"click","category":"eventsimg-link","label":"{{event.name | replace: "'", ""}}##{{event.id}}"}'>
+                        {{event_img}}
+                    </a>
+                    {% else %}
+                        {{event_img}}
+                    {% endif %}
                 {% endif %}
-            {% endif %}
-            {% if footerlocal_page == "point_of_sale" %}
-            {% assign wn = pos.world_nodes | last %}
-            <meta itemprop="name" content="{{event.label}}" />
-            <meta itemprop="startDate" content="{{event.starts_at}}" />
-            <div class="js-event-microdata-place" itemprop="location" itemscope itemtype="http://schema.org/Place">
-                <span itemprop="name">{{pos.name}}</span>
-                <div class="address" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                    <span itemprop="streetAddress">{{pos.address}}</span><br>
-                    <span itemprop="addressLocality">{{pos.city}}</span>,
-                    <span itemprop="addressRegion">{{wn.name}}</span>
-                    <span itemprop="postalCode">{{pos.postal_code}}</span>
+                {% if footerlocal_page == "point_of_sale" %}
+                {% assign wn = pos.world_nodes | last %}
+                <meta itemprop="name" content="{{event.label}}" />
+                <meta itemprop="startDate" content="{{event.starts_at}}" />
+                <div class="js-event-microdata-place" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                    <span itemprop="name">{{pos.name}}</span>
+                    <div class="address" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                        <span itemprop="streetAddress">{{pos.address}}</span><br>
+                        <span itemprop="addressLocality">{{pos.city}}</span>,
+                        <span itemprop="addressRegion">{{wn.name}}</span>
+                        <span itemprop="postalCode">{{pos.postal_code}}</span>
+                    </div>
                 </div>
+                {% endif %}
             </div>
-            {% endif %}
+            {% endfor %}
+            {% endorder %}
         </div>
-        {% endfor %}
-        {% endorder %}
     </div>
 </div>
 {% endif %}

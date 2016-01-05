@@ -83,7 +83,7 @@
             </div>
 
             <div class="hidden-sm hidden-md hidden-lg hidden-print row row-no-padding pos__infos__phone__cta">
-                <div class="col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
+                <div class="col-sm-4 col-sm-offset-4 col-xs-10 col-xs-offset-1">
                     <a href="tel:{{pos_phone | remove:' '}}" class="pos__infos__phone btn btn-default btn-block {{phone_class}}" data-lf-tracking='{"bind":"click","category":"pos{{phone_type}}","label":"{{pos.name | replace: "'",""}}##{{pos_phone}}"}'>
                         <em class="icon-phone"></em>
                         <span>{{pos_phone}} </span>
@@ -103,16 +103,16 @@
 
             <div class="hidden-print row row-no-padding">
                 {% if frontoffice.use_newsletter_request %}
-                <div class="pos__infos__cta col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
+                <div class="pos__infos__cta col-sm-4 col-sm-offset-4 col-xs-10 col-xs-offset-1">
                     <button class="btn btn-default btn-block pos__infos__cta__newsletter" data-toggle="modal" data-target="#pos-newsletterrequest" data-lf-tracking='{"bind":"click","category":"shownewsletter","label":"{{pos.name | replace: "'",""}}"}'><em class="icon-envelope"></em> {{'frontoffice.pos.newsletter_request.title' | translate}}</button>
                 </div>
                 {% endif %}
                 {% if frontoffice.use_address_request %}
-                <div class="pos__infos__cta col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
+                <div class="pos__infos__cta col-sm-4 col-sm-offset-4 col-xs-10 col-xs-offset-1">
                     <button class="btn btn-default btn-block pos__infos__cta__addressrequest" data-toggle="modal" data-target="#pos-addressrequest" data-lf-tracking='{"bind":"click","category":"showaddressrequest","label":"{{pos.name | replace: "'",""}}"}'><em class="icon-paper-plane"></em> {{'frontoffice.pos.address_request.title' | translate}}</button>
                 </div>
                 {% endif %}
-                <div class="pos__infos__cta col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3 hidden-xs">
+                <div class="pos__infos__cta col-sm-4 col-sm-offset-4 col-xs-10 col-xs-offset-1 hidden-xs">
                     <button onclick="javascript:window.print()" class="btn btn-default btn-block pos__infos__cta__print" data-lf-tracking='{"bind":"click","category":"printpospage","label":"{{pos.name | replace: "'",""}}"}'><em class=icon-print></em> {{'frontoffice.pos.print' | translate}}</button>
                 </div>
             </div>
@@ -164,22 +164,14 @@
         </div>
         {% endif %}
 
-        <div class="container spaced">
-            {% include 'eventsactu' with 'promotions' %}
-        </div>
+        {% include 'eventsactu' with 'promotions' %}
+        {% include 'eventsactu' with 'promotions2' %}
+        {% include 'eventsactu' with 'promotions3' %}
+        {% include 'eventsactu' with 'promotions4' %}
+        {% include 'eventsactu' with 'promotions5' %}
 
-        <div class="container spaced">
-            {% include 'eventsactu' with 'promotions2' %}
-        </div>
-        <div class="container spaced">
-            {% include 'eventsactu' with 'promotions3' %}
-        </div>
-        <div class="container spaced">
-            {% include 'eventsactu' with 'promotions4' %}
-        </div>
-        <div class="container spaced">
-            {% include 'eventsactu' with 'promotions5' %}
-        </div>
+        
+        {% include 'eventsimg' with 'lf_small_picture,3' %}
 
         {% if smart_tags.services and smart_tags.services.size != 0 %}
         <div class="pos__scrolling__section">
